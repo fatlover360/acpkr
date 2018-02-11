@@ -1,0 +1,39 @@
+<mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
+
+<div *ngIf="!loading && cash" class="container-fluid">
+    <h2 mat-dialog-title>Day: {{data.cash.day_number}}</h2>
+    <mat-dialog-content>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.cash.amount" placeholder="Amount ">
+      </mat-form-field>
+    </mat-dialog-content>
+</div>
+<div *ngIf="!loading && isCashOut" class="container-fluid">
+  <h2 mat-dialog-title>CashOut</h2>
+  <mat-dialog-content>
+
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.amountCashout" placeholder="Amount ">
+    </mat-form-field>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.amountCashout">Save</button>
+  </mat-dialog-actions>
+</div>
+
+<div *ngIf="!loading && isDeposit" class="container-fluid">
+  <h2 mat-dialog-title>Deposit</h2>
+  <mat-dialog-content>
+
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.depositAmount" placeholder="Amount ">
+    </mat-form-field>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.depositAmount">Save</button>
+  </mat-dialog-actions>
+</div>

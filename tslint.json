@@ -40,7 +40,8 @@
           "static-field",
           "instance-field",
           "static-method",
-          "instance-method"
+          "instance-method",
+          "no-shadowed-variable"
         ]
       }
     ],

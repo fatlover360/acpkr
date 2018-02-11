@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <span routerLink="/home">AC POKER</span>
+  <ng-template [ngIf]="authService.isAuthenticated()">
+    <span routerLink="/users" style="margin-left: 40px">USERS</span>
+    <span routerLink="/ranges" style="margin-left: 5px">RANGES</span>
+    <span routerLink="/profile" style="margin-left: 5px">PROFILE</span>
+    <span routerLink="/cash" style="margin-left: 5px">CASH</span>
+    <span routerLink="/overview" style="margin-left: 5px">OVERVIEW</span>
+    <span routerLink="/admin" style="margin-left: 5px">ADMIN</span>
+  </ng-template>
+  <span class="example-fill-remaining-space"></span>
+  <span routerLink="/login" *ngIf="!authService.isAuthenticated()">LOGIN</span>
+  <span *ngIf="authService.isAuthenticated()" (click)="logout()">LOGOUT</span>
+</mat-toolbar>

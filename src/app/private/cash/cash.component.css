@@ -1,0 +1,35 @@
+.month-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 720px;
+  min-height: 720px;
+  min-width: 300px;
+  max-width: 300px;
+  margin-left: 50px;
+}
+
+.cashout-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 350px;
+  min-width: 350px;
+  min-height: 200px;
+  max-width: 200px;
+  margin-left: 40px;
+}
+
+.deposit-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  max-height: 350px;
+  min-width: 350px;
+  min-height: 200px;
+  max-width: 200px;
+  margin-left: 40px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 720px;
+}
