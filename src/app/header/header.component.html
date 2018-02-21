@@ -1,14 +1,14 @@
-<mat-toolbar>
-  <span routerLink="/home">AC POKER</span>
+<mat-toolbar class="navbar">
+  <img routerLink="/home" src="../../assets/images/cards.png" style="width: 175px; height: 100px;margin-top: 30px">
   <ng-template [ngIf]="authService.isAuthenticated()">
-    <span routerLink="/users" style="margin-left: 40px">USERS</span>
-    <span routerLink="/ranges" style="margin-left: 5px">RANGES</span>
-    <span routerLink="/profile" style="margin-left: 5px">PROFILE</span>
-    <span routerLink="/cash" style="margin-left: 5px">CASH</span>
-    <span routerLink="/overview" style="margin-left: 5px">OVERVIEW</span>
-    <span routerLink="/admin" style="margin-left: 5px">ADMIN</span>
+    <span routerLink="/profile" style="margin-left: 40px">Profile</span>
+    <span routerLink="/cash" style="margin-left: 10px">Cash</span>
+    <span routerLink="/ranges" style="margin-left: 10px">Ranges</span>
+    <span routerLink="/users" style="margin-left: 10px">Users</span>
+    <span routerLink="/overview" style="margin-left: 10px">Overview</span>
+    <span routerLink="/admin" style="margin-left: 10px">Admin</span>
   </ng-template>
   <span class="example-fill-remaining-space"></span>
-  <span routerLink="/login" *ngIf="!authService.isAuthenticated()">LOGIN</span>
-  <span *ngIf="authService.isAuthenticated()" (click)="logout()">LOGOUT</span>
+  <span routerLink="/login" *ngIf="!authService.isAuthenticated()">Login</span>
+  <span *ngIf="authService.isAuthenticated()" (click)="logout()">Logout</span>
 </mat-toolbar>

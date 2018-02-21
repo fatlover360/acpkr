@@ -59,11 +59,11 @@ export class AuthService {
 
   signOut(): void {
     this.afAuth.auth.signOut();
-    this.router.navigate(['/login']);
     this.openDialog();
     setTimeout(() => {
       this.dialog.closeAll();
-    }, 500);
+      this.router.navigate(['/login']);
+    }, 1000);
   }
   getToken() {
     return this.authState.idToken;
