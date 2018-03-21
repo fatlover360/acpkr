@@ -20,11 +20,16 @@ export class FirebaseDbService {
 
   createUser() {
     this.uid = this.angFireAuth.auth.currentUser.uid;
-    const user: UserDB[] = [new UserDB('TESTE', new Date(), null, null, null)];
-    this.getUser(this.uid).subscribe(data => {
-      if (data === null) {
-        this.postFunc(user).subscribe((response) => {
 
+    this.getUser(this.uid).subscribe(data => {
+      console.log(data);
+      if (data === null) {
+        const user = {
+          date: new Date(),
+          uid: this.uid
+        };
+        this.postFunc(user).subscribe((response) => {
+          console.log(response);
         });
       } else {
         this.user = Object.keys(data);
@@ -38,13 +43,13 @@ export class FirebaseDbService {
     });
   }
 
-  postFunc(postData: UserDB[]) {
+  postFunc(postData: any) {
     const body = JSON.stringify(postData);
-    return this.http.post(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid + '/personal_info.json', body, {headers: this.httpOptions.headers});
+    return this.http.post('/users/add', body, {headers: this.httpOptions.headers});
   }
 
   getUser(uid: string) {
-    return this.http.get(this.BASE_PATH + '/users/' + uid + '.json');
+    return this.http.get( '/users/' + uid);
   }
 
   getCash(year: string, month: string) {
@@ -63,9 +68,10 @@ export class FirebaseDbService {
     const body = JSON.stringify(cashOut);
     return this.http.post(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid
       + '/cash_out/' + cashOut.date.getFullYear() + '/' +
-       month + '.json', body,
+      month + '.json', body,
       {headers: this.httpOptions.headers});
   }
+
   getCashout(year: string, month: string) {
     return this.http.get(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid + '/cash_out/' + year + '/' + month + '.json');
   }
@@ -91,6 +97,7 @@ export class FirebaseDbService {
     return this.http.get(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid
       + '/deposit/' + year + '/' + month + '/' + id + '.json');
   }
+
   getUsers() {
     return this.http.get(this.BASE_PATH + '/users.json');
   }

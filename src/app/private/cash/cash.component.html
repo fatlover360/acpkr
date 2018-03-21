@@ -1,119 +1,15 @@
-<div class="row">
-  <div class="col-md-4">
+<div class="container">
 
-    <form>
-      <mat-form-field style="margin-left: 50px; margin-top: 30px; margin-bottom: 30px">
-        <mat-select placeholder="Select Month" [formControl]="selectedMonth">
-          <mat-option *ngFor="let month of months; let i = index" [value]="month">
-            {{ month }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field >
-        <mat-select placeholder="Select Year" [formControl]="selectedYear">
-          <mat-option *ngFor="let year of years; let i = index" [value]="year">
-            {{ year }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-button type="submit" (click)="setData()">Filter</button>
-    </form>
-  </div>
-
-  <div class="col-md-4" >
-    <button mat-icon-button style="margin-top: 30px margin-bottom: 30px">
-      <mat-icon aria-label="Cashout" (click)="saveAmountCashout()">archive</mat-icon>
-    </button>
-    <button mat-icon-button style="margin-top: 30px margin-bottom: 30px">
-      <mat-icon aria-label="Amount" (click)="saveAmountDeposit()">unarchive</mat-icon>
-    </button>
-  </div>
-
-</div>
-
-
-<div class="row" *ngIf="!loadingCashout && !loadingDeposit && !loading">
-  <div class="month-container mat-elevation-z8 col-md-6" *ngIf="!loading">
-    <mat-table #table [dataSource]="dataSource">
-      <!-- Position Column -->
-      <ng-container matColumnDef="day_number">
-        <mat-header-cell *matHeaderCellDef> Day of month</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.day_number}}</mat-cell>
-      </ng-container>
-      <!-- Name Column -->
-      <ng-container matColumnDef="amount">
-        <mat-header-cell *matHeaderCellDef> Amount
-
-        </mat-header-cell>
-        <mat-cell *matCellDef="let element" style="cursor: pointer" (click)="saveAmountForDay(element)"> {{element.amount | currency:'EUR'}}
-        </mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </div>
-
-  <div class="col-md-2">
-    <div class="cashout-container mat-elevation-z8 ">
-      <mat-table #table2 [dataSource]="dataSourceCashOut" *ngIf="!loadingCashout">
-        <!-- Position Column -->
-        <ng-container matColumnDef="amount">
-          <mat-header-cell *matHeaderCellDef> Cashout</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.amount | currency:'EUR'}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="date">
-          <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.date | date: 'shortDate'}}</mat-cell>
-        </ng-container>
-
-        <!-- Name Column -->
-        <mat-header-row *matHeaderRowDef="displayedColumnsCashout"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumnsCashout;"></mat-row>
-      </mat-table>
-    </div>
-    <div class="deposit-container mat-elevation-z8" *ngIf="!loadingDeposit">
-      <mat-table #table3 [dataSource]="dataSourceDeposit">
-        <!-- Position Column -->
-        <ng-container matColumnDef="amount">
-          <mat-header-cell *matHeaderCellDef> Amount</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.amount | currency:'EUR'}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="date">
-          <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.date | date: 'shortDate'}}</mat-cell>
-        </ng-container>
-
-        <!-- Name Column -->
-        <mat-header-row *matHeaderRowDef="displayedColumnsDeposit"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumnsDeposit;"></mat-row>
-      </mat-table>
-    </div>
-
+  <div class="row" style="margin-bottom: 30px; margin-left: 20px">
+    <button (click)="saveAmountCashout()" class="btn btn-primary" style="margin-right: 10px">Cashout</button>
+    <button (click)="saveAmountDeposit()" class="btn btn-primary">Deposit</button>
   </div>
 
 
-  <div class="col-md-4">
-    <div class="row">
-      <div class="col-md-12">
-        <div style="display: block; margin-left: 100px">
-          <canvas baseChart width="350" height="200"
-                  [datasets]="lineChartData"
-                  [labels]="lineChartLabels"
-                  [options]="lineChartOptions"
-                  [colors]="lineChartColors"
-                  [legend]="lineChartLegend"
-                  [chartType]="lineChartType"
-                  (chartHover)="chartHovered($event)"
-                  (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div>
+  <div *ngIf="calendarOptions">
+    <ng-fullcalendar #ucCalendar [options]="calendarOptions"  (dayClick)="dayClick($event.detail)"></ng-fullcalendar>
   </div>
 </div>
-
 
 
 

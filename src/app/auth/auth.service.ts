@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
-import {AngularFireDatabase} from 'angularfire2/database';
 
 import {HttpClient} from '@angular/common/http';
 import {DialogComponent} from '../utils/dialog/dialog.component';
 import {MatDialog} from '@angular/material';
-import {FirebaseDbService} from "../storage/firebase-db.service";
+
 
 @Injectable()
 export class AuthService {
   loading: boolean;
   authState: any = null;
+
   constructor(private router: Router, public afAuth: AngularFireAuth, private http: HttpClient,
               public dialog: MatDialog) {
     this.afAuth.authState.subscribe((auth) => {
@@ -27,6 +27,7 @@ export class AuthService {
       })
       .catch(error => console.log(error));
   }
+
   signInUser(email: string, password: string) {
     this.openDialog();
     this.loading = true;
@@ -38,6 +39,11 @@ export class AuthService {
       })
       .catch(error => console.log(error));
   }
+
+  getUserId() {
+    return this.http.get('/users/' + this.afAuth.auth.currentUser.uid);
+  }
+
   /*
     //for default
     setImageUrl(userImgUrl: string) {
@@ -65,6 +71,7 @@ export class AuthService {
       this.router.navigate(['/login']);
     }, 1000);
   }
+
   getToken() {
     return this.authState.idToken;
   }
@@ -72,6 +79,7 @@ export class AuthService {
   isAuthenticated() {
     return this.currentUser;
   }
+
   // Returns current user data
   get currentUser(): any {
     return this.authenticated ? this.authState : null;

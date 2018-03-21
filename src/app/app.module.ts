@@ -23,6 +23,9 @@ import { OverviewComponent } from './private/overview/overview.component';
 import { AdminComponent } from './private/admin/admin.component';
 import {ChartsModule} from 'ng2-charts';
 import {FirebaseDbService} from './storage/firebase-db.service';
+import {FullCalendarModule} from 'ng-fullcalendar';
+import {CashService} from './private/cash/cash.service';
+import {HttpModule} from "@angular/http";
 
 
 
@@ -41,8 +44,10 @@ import {FirebaseDbService} from './storage/firebase-db.service';
     AdminComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     MaterialModule,
+    FullCalendarModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
@@ -61,7 +66,7 @@ import {FirebaseDbService} from './storage/firebase-db.service';
     AngularFireAuthModule
   ],
   entryComponents: [DialogComponent],
-  providers: [AuthService, AngularFireAuth, AngularFireDatabase, HttpClient, FirebaseDbService],
+  providers: [AuthService, CashService, AngularFireAuth, AngularFireDatabase, HttpClient, FirebaseDbService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

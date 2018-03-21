@@ -12,6 +12,7 @@ export class DialogComponent implements OnInit {
   cash: boolean;
   isCashOut: boolean;
   isDeposit: boolean;
+  empty: boolean;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogComponent>) { }
 
   ngOnInit() {
@@ -19,6 +20,7 @@ export class DialogComponent implements OnInit {
     this.cash = this.data.isFromCash;
     this.isCashOut = this.data.isCashOut;
     this.isDeposit = this.data.isDeposit;
+    this.empty = this.data.empty;
   }
 
   onNoClick(): void {

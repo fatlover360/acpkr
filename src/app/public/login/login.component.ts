@@ -30,12 +30,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSingIn() {
-    console.log(this.emailControl);
-    console.log(this.passwordControl);
     this.authService.signInUser(this.emailControl.value, this.passwordControl.value);
     setTimeout(() => {
       this.firebaseService.createUser();
-    }, 1000);
+    }, 2000);
   }
 }
 
