@@ -19,7 +19,6 @@ td#empty {
 }
 
 td:hover {
-  cursor: pointer;
   background-color: #DCDCDC;
 }
 
@@ -98,6 +97,12 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.percentage {
+  font-size: 5pt;
+  margin-left: 20%;
+  display: block;
 }
 
 
