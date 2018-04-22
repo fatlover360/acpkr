@@ -45,6 +45,7 @@
 </div>
 
 <div *ngIf="!loading && types" class="container-fluid">
+
   <h2 mat-dialog-title>New Type</h2>
   <mat-dialog-content>
 
@@ -53,12 +54,12 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [(ngModel)]="data.color" placeholder="Color ">
+      <input matInput [(ngModel)]="data.color" type="color">
     </mat-form-field>
 
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button [mat-dialog-close]="data">Save</button>
+    <button mat-button class="btn btn-dark" (click)="onNoClick()">Cancel</button>
+    <button mat-button class="btn btn-dark" [mat-dialog-close]="data">Save</button>
   </mat-dialog-actions>
 </div>

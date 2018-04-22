@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row" style="margin-bottom: 20px" *ngIf="isAdmin">
     <button class="btn btn-dark" (click)="save()">Save</button>
-    <button class="btn btn-dark" style="margin-left: 2px">Clear</button>
-    <button class="btn btn-dark" style="margin-left: 2px">Delete</button>
-   <!-- <label class="switch">
-      <input type="checkbox">
-      <span class="slider round"></span>
-    </label> -->
+    <button class="btn btn-dark" style="margin-left: 2px" (click)="clearArray()">Clear</button>
+    <button class="btn btn-dark" *ngIf="typeSelected !== null" style="margin-left: 2px" (click)="delete()">Delete
+    </button>
+    <!-- <label class="switch">
+       <input type="checkbox">
+       <span class="slider round"></span>
+     </label> -->
   </div>
   <div class="row">
-    <div class="col-lg-8">
+    <mat-spinner *ngIf="loading" class="spinnerRanges"></mat-spinner>
+    <div *ngIf="!loading" class="col-lg-8">
       <div class="row">
         <table>
           <!-- <col>-->
@@ -34,92 +36,171 @@
 
           <tr id="A">
             <th scope="row">A</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor" (click)="add(rg)" *ngFor="let rg of ranges.slice(0,13)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(0,13)"><span class="tx" [style.opacity]="1">{{rg.value + rg.kind}}</span><span
+              class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="K">
             <th scope="row">K</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor" (click)="add(rg)" *ngFor="let rg of ranges.slice(13,26)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(13,26)"><span
+              class="tx">{{rg.value + rg.kind}}</span><span class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="Q">
             <th scope="row">Q</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor" (click)="add(rg)" *ngFor="let rg of ranges.slice(26,39)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(26,39)"><span
+              class="tx">{{rg.value + rg.kind}}</span><span class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="J">
             <th scope="row">J</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor" (click)="add(rg)" *ngFor="let rg of ranges.slice(39,52)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(39,52)"><span
+              class="tx">{{rg.value + rg.kind}}</span><span class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="T">
             <th scope="row">T</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor" (click)="add(rg)" *ngFor="let rg of ranges.slice(52,65)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(52,65)"><span
+              class="tx">{{rg.value + rg.kind}}</span><span class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="9">
             <th scope="row">9</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor"  (click)="add(rg)"*ngFor="let rg of ranges.slice(65,78)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(65,78)"><span
+              class="tx">{{rg.value + rg.kind}}</span><span class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="8">
             <th scope="row">8</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor" (click)="add(rg)"*ngFor="let rg of ranges.slice(78,91)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(78,91)"><span
+              class="tx">{{rg.value + rg.kind}}</span><span class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="7">
             <th scope="row">7</th>
-            <td  [style.background-color]="background_color" [style.cursor]="cursor"(click)="add(rg)" *ngFor="let rg of ranges.slice(91,104)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(91,104)"><span class="tx">{{rg.value + rg.kind}}</span><span
+              class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="6">
             <th scope="row">6</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor"(click)="add(rg)" *ngFor="let rg of ranges.slice(104,117)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(104,117)"><span class="tx">{{rg.value + rg.kind}}</span><span
+              class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="5">
             <th scope="row">5</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor"(click)="add(rg)" *ngFor="let rg of ranges.slice(117,130)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(117,130)"><span class="tx">{{rg.value + rg.kind}}</span><span
+              class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="4">
             <th scope="row">4</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor"(click)="add(rg)" *ngFor="let rg of ranges.slice(130,143)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(130,143)"><span class="tx">{{rg.value + rg.kind}}</span><span
+              class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="3">
             <th scope="row">3</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor"(click)="add(rg)" *ngFor="let rg of ranges.slice(143,156)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(143,156)"><span class="tx">{{rg.value + rg.kind}}</span><span
+              class="percentage">{{rg.percentage}} %</span></td>
           </tr>
 
           <tr id="2">
             <th scope="row">2</th>
-            <td [style.background-color]="background_color" [style.cursor]="cursor" (click)="add(rg)"*ngFor="let rg of ranges.slice(156,169)">{{rg.value + rg.kind}}<span class="percentage">{{rg.percentage}} %</span></td>
+            <td [style.background-color]="rg.type!=='DEFAULT' ? background_color : ''" [style.cursor]="cursor"
+                (click)="add(rg)" *ngFor="let rg of rangesInMemory.slice(156,169)"><span class="tx">{{rg.value + rg.kind}}</span><span
+              class="percentage">{{rg.percentage}} %</span></td>
           </tr>
         </table>
       </div>
 
-      <div class="row" style="margin-top: 20px">
-        <button class="btn btn-dark" (click)="setPosition($event.target.innerText)">BB</button>
-        <button class="btn btn-dark" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">SM</button>
-        <button class="btn btn-dark" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">UTG</button>
-        <button class="btn btn-dark" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">UTG +1</button>
-        <button class="btn btn-dark" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">MP</button>
-        <button class="btn btn-dark" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">MP +1</button>
-        <button class="btn btn-dark" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">HJ</button>
-        <button class="btn btn-dark" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">CO</button>
-      </div>
+
     </div>
 
     <div class="col-lg-4">
       <div class="container" style="background-color: lightgray; padding: 15px 15px 15px 15px">
-        <h3 style="text-align: center;">{{positionSelected}}</h3>
-        <h4 class="btn types" *ngIf="typeSelected!==null" [style.background-color]="typeSelected.color">{{typeSelected.type}}</h4>
+        <h3 style="text-align: center;">{{positionSelected}} / {{gametypeSelected}}</h3>
+        <h4 class="btn types" *ngIf="typeSelected!==null" [style.background-color]="typeSelected.color">
+          {{typeSelected.type}}</h4>
+        <h4 class="btn types" *ngIf="blindSelected!==null" [style.background-color]="blindSelected.color">
+          {{blindSelected.value}}</h4>
       </div>
-      <div class="container" style="background-color: lightgray; margin-top: 20px; padding: 15px 15px 15px 15px">
-        <button *ngFor="let t of types" class="btn types" (click)="selectType(t)" [style.background-color]="t.color">{{t.type}}</button>
 
-        <button class="btn btn-dark types" (click)="addType()" *ngIf="isAdmin">+</button>
+      <div class="container" style="background-color: lightgray; margin-top: 20px; padding: 15px 15px 15px 15px">
+        <label style="text-align: center; display: block;">Game Type</label>
+        <button class="btn-sm btn-dark types " (click)="selectGameType($event.target.innerText)">9 hand</button>
+        <button class="btn-sm btn-dark types" style="margin-left: 2px"
+                (click)="selectGameType($event.target.innerText)">6 max
+        </button>
+      </div>
+
+      <div class="container" style="background-color: lightgray; margin-top: 20px; padding: 15px 15px 15px 15px">
+        <label style="text-align: center; display: block;">Positions</label>
+        <button class="btn-sm btn-dark types " *ngIf="gametypeSelected !=='6 max'"
+                (click)="setPosition($event.target.innerText)">UTG
+        </button>
+        <button class="btn-sm btn-dark types" *ngIf="gametypeSelected !=='6 max'" style="margin-left: 2px"
+                (click)="setPosition($event.target.innerText)">UTG +1
+        </button>
+        <button class="btn-sm btn-dark types" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">
+          MP
+        </button>
+        <button class="btn-sm btn-dark types" *ngIf="gametypeSelected !=='6 max'" style="margin-left: 2px"
+                (click)="setPosition($event.target.innerText)">MP +1
+        </button>
+        <button class="btn-sm btn-dark types" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">
+          HJ
+        </button>
+        <button class="btn-sm btn-dark types" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">
+          CO
+        </button>
+        <button class="btn-sm btn-dark types" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">
+          BU
+        </button>
+        <button class="btn-sm btn-dark types" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">
+          SM
+        </button>
+        <button class="btn-sm btn-dark types" style="margin-left: 2px" (click)="setPosition($event.target.innerText)">
+          BB
+        </button>
+      </div>
+
+      <div class="container" style="background-color: lightgray; margin-top: 20px; padding: 15px 15px 15px 15px">
+        <label style="text-align: center; display: block;">Types</label>
+
+        <button *ngFor="let t of types" class="btn types" (click)="selectType(t)" [style.background-color]="t.color">
+          {{t.type}}
+        </button>
+
+        <button class="btn-sm btn-dark types" (click)="addType()" *ngIf="isAdmin">+</button>
+      </div>
+
+      <div class="container" style="background-color: lightgray; margin-top: 20px; padding: 15px 15px 15px 15px">
+        <label style="text-align: center; display: block;">Blinds</label>
+        <button *ngFor="let t of blinds" class="btn types" (click)="selectBlind(t)" [style.background-color]="t.color">
+          {{t.value}}
+        </button>
+      </div>
+
+      <div *ngIf="isAdmin" class="container" style="margin-top: 20px">
+        <div class="form-group">
+          <label for="percentageInput">Percentage:</label>
+          <input type="number" [(ngModel)]="percentageSelected" class="form-control" id="percentageInput" min="0.1"
+                 max="100">
+        </div>
       </div>
     </div>
   </div>

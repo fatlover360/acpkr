@@ -27,9 +27,17 @@ export class RangesService {
     return this.http.get('/range/types/all').map(data => <Type []> data);
   }
 
+  getByTypeAndPosition(type: Type, position: string, blind: string, gametype: string): Observable<Ranges []> {
+    return this.http.get('/range/find/' + type.type + '/' + position + '/' + blind + '/' + gametype).map(data => <Ranges []> data);
+  }
+
   saveType(type: Type) {
     // const body = JSON.stringify(cash);
     return this.http.post('/range/type/add', type, {headers: this.httpOptions.headers} );
+  }
+
+  delete(type: Type) {
+    return this.http.delete('/range/delete/' + type.type);
   }
 
   saveModel(ranges: Ranges []) {

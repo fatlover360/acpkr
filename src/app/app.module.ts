@@ -27,6 +27,8 @@ import {FullCalendarModule} from 'ng-fullcalendar';
 import {CashService} from './private/cash/cash.service';
 import {HttpModule} from "@angular/http";
 import {RangesService} from "./private/ranges/ranges.service";
+import { ForumComponent } from './private/forum/forum.component';
+import { PostComponent } from './private/forum/post/post.component';
 
 
 
@@ -42,7 +44,9 @@ import {RangesService} from "./private/ranges/ranges.service";
     ProfileComponent,
     CashComponent,
     OverviewComponent,
-    AdminComponent
+    AdminComponent,
+    ForumComponent,
+    PostComponent
   ],
   imports: [
     HttpModule,

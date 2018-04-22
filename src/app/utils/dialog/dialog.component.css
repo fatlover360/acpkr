@@ -12,3 +12,7 @@
 .backdropClass {
   opacity: 60;
 }
+
+.dialogcontent {
+  width: 50%;
+}

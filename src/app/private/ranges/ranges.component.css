@@ -26,10 +26,11 @@ td:hover {
   border-radius: 0 !important;
 }
 
+
 .types{
   margin-left: 2px;
   margin-top: 10px;
-  border-radius: 20px;
+  padding: 2px;
 }
 
 .btn {
@@ -104,6 +105,18 @@ input:checked + .slider:before {
   margin-left: 20%;
   display: block;
 }
+
+.spinnerRanges {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.btn-dark {
+  cursor: pointer;
+}
+
+
 
 
 

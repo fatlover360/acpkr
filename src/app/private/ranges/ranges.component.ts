@@ -3,8 +3,8 @@ import {Ranges} from '../../model/ranges.model';
 import {RangesService} from './ranges.service';
 import {Type} from '../../model/type.model';
 import {MatDialog, MatSnackBar} from '@angular/material';
-import {DialogComponent} from "../../utils/dialog/dialog.component";
-import {AuthService} from "../../auth/auth.service";
+import {DialogComponent} from '../../utils/dialog/dialog.component';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-ranges',
@@ -12,17 +12,28 @@ import {AuthService} from "../../auth/auth.service";
   styleUrls: ['./ranges.component.css']
 })
 export class RangesComponent implements OnInit {
+  blinds: any [] = [
+    {'value': '10-15', 'color': 'darkred'},
+    {'value': '15-22', 'color': 'red'},
+    {'value': '22-30', 'color': 'orange'},
+    {'value': '30-40', 'color': 'yellow'},
+    {'value': '40+', 'color': 'green'}];
   ranges: Ranges [] = [];
-  setRange: Ranges[] = [];
+  rangesInMemory: Ranges[] = [];
+  rangesToAdd: Ranges[] = [];
   types: Type [] = [];
   background_color = '';
-  background_color_added = 'green';
   typeSelected: Type = null;
   positionSelected = null;
+  blindSelected = null;
+  gametypeSelected = null;
+  percentageSelected = 0;
   cursor = 'pointer';
   email = '';
   admin = 'acuco1988@gmail.com';
   isAdmin = false;
+  loading = true;
+  loadingTypes = true;
 
   constructor(private rangesService: RangesService, public dialog: MatDialog, public snackBar: MatSnackBar, private auth: AuthService) {
     this.email = auth.currentUser.email;
@@ -41,41 +52,65 @@ export class RangesComponent implements OnInit {
     this.getTypes();
   }
 
+  clearArray() {
+    this.rangesInMemory.forEach(c => {
+      c.percentage = 0;
+      c.position = '';
+      c.type = 'DEFAULT';
+    });
+    this.rangesToAdd = [];
+  }
+
   setPosition(position) {
     this.positionSelected = position;
+    this.getByTypeAndPosition();
   }
 
   getDefault() {
-    this.rangesService.getModel().subscribe((data) => {
-      console.log(data);
-      this.ranges = data;
-    }, error => {
-      console.log(error);
-    });
+    this.loading = true;
+    setTimeout(t => {
+      this.rangesService.getModel().subscribe((data) => {
+        this.ranges = data;
+        this.rangesInMemory = data;
+        this.loading = false;
+        console.log(this.rangesInMemory);
+      }, error => {
+        console.log(error);
+        this.loading = false;
+      });
+
+    }, 1000);
   }
 
   getTypes() {
+    this.loadingTypes = true;
     this.rangesService.getTypes().subscribe((data) => {
-      console.log(data);
       this.types = data;
+      this.loadingTypes = false;
     }, error => {
+      this.loadingTypes = false;
       console.log(error);
     });
   }
 
   saveModel() {
     this.rangesService.saveModel(this.ranges).subscribe((data) => {
-      alert(data);
+
     }, error2 => {
       alert(error2);
     });
   }
 
   save() {
-    this.rangesService.saveRanges(this.setRange).subscribe((data) => {
-      this.setRange = [];
+    this.rangesService.saveRanges(this.rangesToAdd).subscribe((data) => {
+      this.clearArray();
+      this.snackBar.open('Range saved for ' + this.positionSelected + ' /' + this.typeSelected.type, '', {
+        duration: 3000
+      });
       this.typeSelected = null;
       this.positionSelected = null;
+      this.blindSelected = null;
+      this.gametypeSelected = null;
     }, error2 => {
       alert(error2.toString());
     });
@@ -83,8 +118,8 @@ export class RangesComponent implements OnInit {
 
   addType() {
     const dialogRefCash = this.dialog.open(DialogComponent, {
-      height: '400px',
-      width: '400px',
+      height: '300px',
+      width: '300px',
       disableClose: true,
       data:
         {
@@ -110,26 +145,87 @@ export class RangesComponent implements OnInit {
 
   add(range: Ranges) {
     if (this.isAdmin) {
-      if (this.typeSelected !== null && this.positionSelected !== null) {
-        let found = false;
-        for (let i = 0; i < this.setRange.length; i++) {
-          if (this.setRange[i].value === range.value && this.setRange[i].kind === range.kind) {
-            found = true;
-          }
-        }
-
-        if (!found) {
-          this.setRange.push(range);
-          console.log(this.setRange);
-        }
+      if (this.percentageSelected > 100 || this.percentageSelected < 0) {
+        alert('Percentage must be between 0 and 100');
       } else {
-        alert('You must select a type and a position first.');
+        if (this.typeSelected !== null && this.positionSelected !== null && this.blindSelected !== null && this.gametypeSelected !== null) {
+          let found = false;
+          let index = 0;
+          let indexReset = 0;
+          for (let i = 0; i < this.rangesInMemory.length; i++) {
+            if (this.rangesInMemory[i].value === range.value && this.rangesInMemory[i].kind === range.kind) {
+              indexReset = i;
+              this.rangesInMemory[i].type = this.typeSelected.type;
+              this.rangesInMemory[i].percentage = this.percentageSelected;
+              this.rangesInMemory[i].position = this.positionSelected;
+              this.rangesInMemory[i].blind = this.blindSelected.value;
+              this.rangesInMemory[i].gameType = this.gametypeSelected;
+            }
+          }
+
+          for (let i = 0; i < this.rangesToAdd.length; i++) {
+            if (this.rangesToAdd[i].value === range.value && this.rangesToAdd[i].kind === range.kind) {
+              found = true;
+              index = i;
+              this.rangesToAdd[i].type = this.typeSelected.type;
+              this.rangesToAdd[i].percentage = this.percentageSelected;
+              this.rangesToAdd[i].position = this.positionSelected;
+              this.rangesToAdd[i].blind = this.blindSelected.value;
+              this.rangesToAdd[i].gameType = this.gametypeSelected;
+            }
+          }
+
+          if (!found) {
+            this.rangesToAdd.push(new Ranges(range.value, range.type,
+              range.percentage, range.kind, range.position, range.blind, range.gameType));
+            console.log(this.rangesToAdd);
+          } else {
+            this.rangesInMemory[indexReset].type = 'DEFAULT';
+            this.rangesToAdd.splice(index, 1);
+          }
+        } else {
+          alert('You must select a type, a blind, a position, and game type first.');
+        }
       }
     }
   }
 
   selectType(t: Type) {
     this.typeSelected = t;
+    this.background_color = t.color;
+    this.getByTypeAndPosition();
+  }
+
+  getByTypeAndPosition() {
+    this.clearArray();
+    if (this.gametypeSelected !== null && this.blindSelected !== null && this.positionSelected !== null && this.typeSelected !== null) {
+      this.loading = true;
+      this.rangesService.getByTypeAndPosition(this.typeSelected, this.positionSelected, this.blindSelected.value, this.gametypeSelected)
+        .subscribe( data => {
+          this.rangesInMemory = data;
+          this.loading = false;
+      });
+    }
+  }
+
+  selectBlind(t: any) {
+    this.blindSelected = t;
+    this.getByTypeAndPosition();
+  }
+
+  selectGameType(t) {
+    this.gametypeSelected = t;
+    this.positionSelected = null;
+    this.getByTypeAndPosition();
+  }
+
+  delete() {
+    this.rangesService.delete(this.typeSelected).subscribe( t => {
+      this.clearArray();
+      this.typeSelected = null;
+    }, error => {
+      console.log(error.toString());
+    });
   }
 }
 
