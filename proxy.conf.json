@@ -1,6 +1,6 @@
 {
   "/users/*": {
-    "target": "http://localhost:8080",
+    "target": "http://56aa4e1e.ngrok.io",
     "secure": "false"
   },
   "/deposits/*": {
@@ -16,7 +16,7 @@
     "secure": "false"
   },
   "/range/*": {
-    "target": "http://localhost:8080",
+    "target": "http://56aa4e1e.ngrok.io",
     "secure": "false"
   }
 }
