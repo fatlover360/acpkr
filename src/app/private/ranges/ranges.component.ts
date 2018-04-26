@@ -27,10 +27,12 @@ export class RangesComponent implements OnInit {
   positionSelected = null;
   blindSelected = null;
   gametypeSelected = null;
+  colorSelected = null;
   percentageSelected = 0;
   cursor = 'pointer';
   email = '';
   admin = 'acuco1988@gmail.com';
+  admin2 = 'joaocsvieira92@gmail.com';
   isAdmin = false;
   loading = true;
   loadingTypes = true;
@@ -40,7 +42,7 @@ export class RangesComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.email === this.admin) {
+    if (this.email === this.admin || this.email === this.admin2) {
       this.cursor = 'pointer';
       this.isAdmin = true;
     } else {
@@ -57,6 +59,7 @@ export class RangesComponent implements OnInit {
       c.percentage = 0;
       c.position = '';
       c.type = 'DEFAULT';
+      c.color = null;
     });
     this.rangesToAdd = [];
   }
@@ -104,13 +107,15 @@ export class RangesComponent implements OnInit {
   save() {
     this.rangesService.saveRanges(this.rangesToAdd).subscribe((data) => {
       this.clearArray();
-      this.snackBar.open('Range saved for ' + this.positionSelected + ' /' + this.typeSelected.type, '', {
-        duration: 3000
+      this.snackBar.open('Range saved for ' + this.positionSelected + ' /' + this.typeSelected.type + ' ' + this.blindSelected.value
+        + ' ' + this.gametypeSelected, '', {
+        duration: 5000
       });
       this.typeSelected = null;
       this.positionSelected = null;
       this.blindSelected = null;
       this.gametypeSelected = null;
+      this.colorSelected = null;
     }, error2 => {
       alert(error2.toString());
     });
@@ -136,7 +141,7 @@ export class RangesComponent implements OnInit {
         this.types.push(type);
         this.rangesService.saveType(type).subscribe(() => {
           this.snackBar.open('Type saved', '', {
-            duration: 3000
+            duration: 5000
           });
         });
       }
@@ -148,7 +153,8 @@ export class RangesComponent implements OnInit {
       if (this.percentageSelected > 100 || this.percentageSelected < 0) {
         alert('Percentage must be between 0 and 100');
       } else {
-        if (this.typeSelected !== null && this.positionSelected !== null && this.blindSelected !== null && this.gametypeSelected !== null) {
+        if (this.typeSelected !== null && this.positionSelected !== null && this.blindSelected !== null
+          && this.gametypeSelected !== null && this.colorSelected !== null) {
           let found = false;
           let index = 0;
           let indexReset = 0;
@@ -160,6 +166,7 @@ export class RangesComponent implements OnInit {
               this.rangesInMemory[i].position = this.positionSelected;
               this.rangesInMemory[i].blind = this.blindSelected.value;
               this.rangesInMemory[i].gameType = this.gametypeSelected;
+              this.rangesInMemory[i].color = this.colorSelected;
             }
           }
 
@@ -172,15 +179,17 @@ export class RangesComponent implements OnInit {
               this.rangesToAdd[i].position = this.positionSelected;
               this.rangesToAdd[i].blind = this.blindSelected.value;
               this.rangesToAdd[i].gameType = this.gametypeSelected;
+              this.rangesToAdd[i].color = this.colorSelected;
             }
           }
 
           if (!found) {
             this.rangesToAdd.push(new Ranges(range.value, range.type,
-              range.percentage, range.kind, range.position, range.blind, range.gameType));
+              range.percentage, range.kind, range.position, range.blind, range.gameType, range.color));
             console.log(this.rangesToAdd);
           } else {
             this.rangesInMemory[indexReset].type = 'DEFAULT';
+            this.rangesInMemory[indexReset].color = null;
             this.rangesToAdd.splice(index, 1);
           }
         } else {
@@ -222,7 +231,19 @@ export class RangesComponent implements OnInit {
   delete() {
     this.rangesService.delete(this.typeSelected).subscribe( t => {
       this.clearArray();
+      let index = 0;
+      this.types.forEach( i => {
+        if (i === this.typeSelected) {
+          this.types.splice(index, 1);
+        }
+        index++;
+      })
+
       this.typeSelected = null;
+
+      this.snackBar.open('Type range deleted', '', {
+        duration: 5000
+      });
     }, error => {
       console.log(error.toString());
     });

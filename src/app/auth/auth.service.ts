@@ -5,6 +5,7 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {HttpClient} from '@angular/common/http';
 import {DialogComponent} from '../utils/dialog/dialog.component';
 import {MatDialog} from '@angular/material';
+import {environment} from "../../environments/environment.prod";
 
 
 @Injectable()
@@ -41,7 +42,7 @@ export class AuthService {
   }
 
   getUserId() {
-    return this.http.get('/users/' + this.afAuth.auth.currentUser.uid);
+    return this.http.get(environment.baseUrl + '/users/' + this.afAuth.auth.currentUser.uid);
   }
 
   /*
@@ -104,7 +105,7 @@ export class AuthService {
   private updateUserData(): void {
     // Writes user name and email to realtime db
     // useful if your app displays information about users or for admin features
-    const path = `users/${this.currentUserId}`; // Endpoint on firebase
+    const path = environment.baseUrl + `users/${this.currentUserId}`; // Endpoint on firebase
     const data = {
       email: this.authState.email,
       name: this.authState.displayName

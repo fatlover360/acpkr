@@ -29,6 +29,7 @@ import {HttpModule} from "@angular/http";
 import {RangesService} from "./private/ranges/ranges.service";
 import { ForumComponent } from './private/forum/forum.component';
 import { PostComponent } from './private/forum/post/post.component';
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 
 
@@ -71,7 +72,7 @@ import { PostComponent } from './private/forum/post/post.component';
     AngularFireAuthModule
   ],
   entryComponents: [DialogComponent],
-  providers: [AuthService, CashService, AngularFireAuth, AngularFireDatabase, HttpClient, FirebaseDbService, RangesService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AuthService, CashService, AngularFireAuth, AngularFireDatabase, HttpClient, FirebaseDbService, RangesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

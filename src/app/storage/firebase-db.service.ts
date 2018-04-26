@@ -5,6 +5,7 @@ import {UserDB} from '../model/user.model';
 import {Cash} from '../model/cash.model';
 import {Cashout} from '../model/cashout.model';
 import {Deposit} from '../model/deposit.model';
+import {environment} from "../../environments/environment.prod";
 
 @Injectable()
 export class FirebaseDbService {
@@ -45,20 +46,20 @@ export class FirebaseDbService {
 
   postFunc(postData: any) {
     const body = JSON.stringify(postData);
-    return this.http.post('/users/add', body, {headers: this.httpOptions.headers});
+    return this.http.post(environment.baseUrl + '/users/add', body, {headers: this.httpOptions.headers});
   }
 
   getUser(uid: string) {
-    return this.http.get( '/users/' + uid);
+    return this.http.get( environment.baseUrl + '/users/' + uid);
   }
 
   getCash(year: string, month: string) {
-    return this.http.get(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid + '/cash/' + year + '/' + month + '.json');
+    return this.http.get(environment.baseUrl +'/users/' + this.angFireAuth.auth.currentUser.uid + '/cash/' + year + '/' + month + '.json');
   }
 
   setCash(cash: Cash[]) {
     const body = JSON.stringify(cash);
-    return this.http.put(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid
+    return this.http.put(environment.baseUrl + '/users/' + this.angFireAuth.auth.currentUser.uid
       + '/cash/' + cash[0].year + '/' +
       cash[0].month + '.json', body,
       {headers: this.httpOptions.headers});
@@ -66,39 +67,39 @@ export class FirebaseDbService {
 
   setCashOut(cashOut: Cashout, month: string) {
     const body = JSON.stringify(cashOut);
-    return this.http.post(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid
+    return this.http.post(environment.baseUrl + '/users/' + this.angFireAuth.auth.currentUser.uid
       + '/cash_out/' + cashOut.date.getFullYear() + '/' +
       month + '.json', body,
       {headers: this.httpOptions.headers});
   }
 
   getCashout(year: string, month: string) {
-    return this.http.get(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid + '/cash_out/' + year + '/' + month + '.json');
+    return this.http.get(environment.baseUrl + '/users/' + this.angFireAuth.auth.currentUser.uid + '/cash_out/' + year + '/' + month + '.json');
   }
 
   getCashoutObj(year: string, month: string, id: string) {
-    return this.http.get(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid
+    return this.http.get(environment.baseUrl + '/users/' + this.angFireAuth.auth.currentUser.uid
       + '/cash_out/' + year + '/' + month + '/' + id + '.json');
   }
 
   getDeposit(year: string, month: string) {
-    return this.http.get(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid + '/deposit/' + year + '/' + month + '.json');
+    return this.http.get(environment.baseUrl + '/users/' + this.angFireAuth.auth.currentUser.uid + '/deposit/' + year + '/' + month + '.json');
   }
 
   setDeposit(deposit: Deposit, month: string) {
     const body = JSON.stringify(deposit);
-    return this.http.post(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid
+    return this.http.post(environment.baseUrl + '/users/' + this.angFireAuth.auth.currentUser.uid
       + '/deposit/' + deposit.date.getFullYear() + '/' +
       month + '.json', body,
       {headers: this.httpOptions.headers});
   }
 
   getDepositObj(year: string, month: string, id: string) {
-    return this.http.get(this.BASE_PATH + '/users/' + this.angFireAuth.auth.currentUser.uid
+    return this.http.get(environment.baseUrl + '/users/' + this.angFireAuth.auth.currentUser.uid
       + '/deposit/' + year + '/' + month + '/' + id + '.json');
   }
 
   getUsers() {
-    return this.http.get(this.BASE_PATH + '/users.json');
+    return this.http.get(environment.baseUrl + '/users.json');
   }
 }
