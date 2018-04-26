@@ -237,7 +237,7 @@ export class RangesComponent implements OnInit {
           this.types.splice(index, 1);
         }
         index++;
-      })
+      });
 
       this.typeSelected = null;
 
