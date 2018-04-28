@@ -1,17 +1,19 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Ranges} from '../../model/ranges.model';
+import {environment} from '../../../environments/environment.prod';
+import {Post} from '../../model/post.model';
 import {Observable} from "rxjs/Observable";
-import {Type} from "../../model/type.model";
-import {environment} from "../../../environments/environment.prod";
+import {Game} from "../../model/game.model";
+import {PagepostModel} from "../../model/pagepost.model";
 
 @Injectable()
-export class RangesService {
+export class PostService {
   loading: boolean;
   authState: any = null;
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
+
   };
 
   constructor(public afAuth: AngularFireAuth, private http: HttpClient) {
@@ -20,21 +22,40 @@ export class RangesService {
     });
   }
 
+  savePost(post: Post) {
+    return this.http.post(environment.baseUrl + '/posts/add', post, {headers: this.httpOptions.headers} );
+  }
+
+  getAll(page: number): Observable<PagepostModel> {
+    return this.http.get(environment.baseUrl + '/posts/all?page=' + page).map(data => <PagepostModel> data);
+  }
+
+  getId(id: number): Observable<Post> {
+    return this.http.get(environment.baseUrl + '/posts/find/' + id).map(data => <Post> data);
+  }
+  editPost(post: Post) {
+    return this.http.patch(environment.baseUrl + '/posts/edit', post, {headers: this.httpOptions.headers});
+  }
+  delete(post: Post) {
+    return this.http.delete(environment.baseUrl + '/posts/delete/' + post.id);
+  }
+
+  getGame(id: number): Observable<Game> {
+    return this.http.get(environment.baseUrl + '/posts/hand/' + id).map(data => <Game> data);
+  }
+
+  /*
+
   getModel(): Observable<Ranges []> {
     return this.http.get(environment.baseUrl + '/range/default').map(data => <Ranges []> data);
   }
 
-  getTypes(gametype: string): Observable<Type []> {
-    return this.http.get(environment.baseUrl + '/range/types/all/' + gametype).map(data => <Type []> data);
+  getTypes(): Observable<Type []> {
+    return this.http.get(environment.baseUrl + '/range/types/all').map(data => <Type []> data);
   }
 
   getByTypeAndPosition(type: Type, position: string, blind: string, gametype: string): Observable<Ranges []> {
     return this.http.get(environment.baseUrl + '/range/find/' + type.type + '/' + position + '/' + blind + '/' + gametype).map(data => <Ranges []> data);
-  }
-
-  saveType(type: Type) {
-    // const body = JSON.stringify(cash);
-    return this.http.post(environment.baseUrl + '/range/type/add', type, {headers: this.httpOptions.headers} );
   }
 
   delete(type: Type) {
@@ -49,6 +70,6 @@ export class RangesService {
   saveRanges(ranges: Ranges []) {
     // const body = JSON.stringify(cash);
     return this.http.post( environment.baseUrl + '/range/add', ranges, {headers: this.httpOptions.headers} );
-  }
+  } */
 
 }

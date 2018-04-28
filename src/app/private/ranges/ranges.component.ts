@@ -5,6 +5,7 @@ import {Type} from '../../model/type.model';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {DialogComponent} from '../../utils/dialog/dialog.component';
 import {AuthService} from '../../auth/auth.service';
+import {ActivatedRoute, Params, UrlSegment} from "@angular/router";
 
 @Component({
   selector: 'app-ranges',
@@ -37,11 +38,20 @@ export class RangesComponent implements OnInit {
   loading = true;
   loadingTypes = true;
 
-  constructor(private rangesService: RangesService, public dialog: MatDialog, public snackBar: MatSnackBar, private auth: AuthService) {
+  constructor(private rangesService: RangesService, public dialog: MatDialog, public snackBar: MatSnackBar, private auth: AuthService, private route: ActivatedRoute) {
     this.email = auth.currentUser.email;
   }
 
   ngOnInit() {
+    this.route.url.subscribe(
+      (url: UrlSegment[]) => {
+        if (url[0].path === 'ranges_bb') {
+          this.gametypeSelected = 'BB Ranges';
+        } else {
+          this.gametypeSelected = 'Static Ranges';
+        }
+      }
+    );
     if (this.email === this.admin || this.email === this.admin2) {
       this.cursor = 'pointer';
       this.isAdmin = true;
@@ -87,7 +97,7 @@ export class RangesComponent implements OnInit {
 
   getTypes() {
     this.loadingTypes = true;
-    this.rangesService.getTypes().subscribe((data) => {
+    this.rangesService.getTypes(this.gametypeSelected).subscribe((data) => {
       this.types = data;
       this.loadingTypes = false;
     }, error => {
@@ -114,7 +124,6 @@ export class RangesComponent implements OnInit {
       this.typeSelected = null;
       this.positionSelected = null;
       this.blindSelected = null;
-      this.gametypeSelected = null;
       this.colorSelected = null;
     }, error2 => {
       alert(error2.toString());
@@ -137,7 +146,7 @@ export class RangesComponent implements OnInit {
 
     dialogRefCash.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        const type: Type = new Type(result.typeName, result.color);
+        const type: Type = new Type(result.typeName, result.color, this.gametypeSelected);
         this.types.push(type);
         this.rangesService.saveType(type).subscribe(() => {
           this.snackBar.open('Type saved', '', {
@@ -207,7 +216,7 @@ export class RangesComponent implements OnInit {
 
   getByTypeAndPosition() {
     this.clearArray();
-    if (this.gametypeSelected !== null && this.blindSelected !== null && this.positionSelected !== null && this.typeSelected !== null) {
+    if (this.blindSelected !== null && this.positionSelected !== null && this.typeSelected !== null) {
       this.loading = true;
       this.rangesService.getByTypeAndPosition(this.typeSelected, this.positionSelected, this.blindSelected.value, this.gametypeSelected)
         .subscribe( data => {
@@ -222,11 +231,6 @@ export class RangesComponent implements OnInit {
     this.getByTypeAndPosition();
   }
 
-  selectGameType(t) {
-    this.gametypeSelected = t;
-    this.positionSelected = null;
-    this.getByTypeAndPosition();
-  }
 
   delete() {
     this.rangesService.delete(this.typeSelected).subscribe( t => {

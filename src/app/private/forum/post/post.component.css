@@ -1,0 +1,111 @@
+.main {
+  height: 300px;
+}
+
+.table {
+  background-color: green;
+  height: 350px;
+  width: 70%;
+  border-radius: 50%;
+  margin: 0 auto;
+  border: 1em solid black;
+}
+
+.board {
+  position: relative;
+  top: 20%;
+  left: 27%;
+}
+.card-small {
+  border: .2em solid black;
+  border-radius: 10%;
+  height: 80px;
+  width: 56px; /*70% of height*/
+  margin-right: 5px;
+  float: left;
+  background-color: white;
+}
+
+.card-text {
+  margin: 0;
+  margin-top: 15%;
+  text-align: center;
+  padding: 0;
+  font-weight: bold;
+}
+
+.card-img {
+  text-align: center;
+  margin: 0;
+  font-size: 2em;
+}
+
+.red {
+  color: red;
+}
+
+.black {
+  color: black;
+}
+
+.null {
+  background-color: darkred;
+}
+
+.st0 {
+  position: relative;
+  top: 90%;
+  left: 60%;
+}
+
+.st1 {
+  position: relative;
+  top: 100%;
+  left: 30%;
+}
+
+.st2 {
+  position: relative;
+  top: 70%;
+  left: -10%;
+}
+
+.st3 {
+  position: relative;
+  top: 20%;
+  left: -20%;
+}
+
+.st4 {
+  position: relative;
+  top: -10%;
+  left: -5%;
+}
+
+.st5 {
+  position: relative;
+  top: -5%;
+  left: 5%;
+}
+
+.st6 {
+  position: relative;
+  top: 10%;
+  left: 10%;
+}
+
+.st7 {
+  position: relative;
+  top: 50%;
+  left: 5%;
+}
+
+.st7 {
+  position: relative;
+  top: 60%;
+  left: 0%;
+}
+
+
+
+

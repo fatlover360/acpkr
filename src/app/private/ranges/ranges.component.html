@@ -140,14 +140,6 @@
       </div>
 
       <div class="container" style="background-color: lightgray; margin-top: 20px; padding: 15px 15px 15px 15px">
-        <label style="text-align: center; display: block;">Game Type</label>
-        <button class="btn-sm btn-dark types " (click)="selectGameType($event.target.innerText)">9 hand</button>
-        <button class="btn-sm btn-dark types" style="margin-left: 2px"
-                (click)="selectGameType($event.target.innerText)">6 max
-        </button>
-      </div>
-
-      <div class="container" style="background-color: lightgray; margin-top: 20px; padding: 15px 15px 15px 15px">
         <label style="text-align: center; display: block;">Positions</label>
         <button class="btn-sm btn-dark types " *ngIf="gametypeSelected !=='6 max'"
                 (click)="setPosition($event.target.innerText)">UTG

@@ -105,13 +105,11 @@ input:checked + .slider:before {
   margin-left: 20%;
   display: block;
 }
-
 .spinnerRanges {
   margin: auto;
   width: 50%;
   padding: 10px;
 }
-
 .btn-dark {
   cursor: pointer;
 }

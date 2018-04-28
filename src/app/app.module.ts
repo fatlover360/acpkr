@@ -30,6 +30,9 @@ import {RangesService} from "./private/ranges/ranges.service";
 import { ForumComponent } from './private/forum/forum.component';
 import { PostComponent } from './private/forum/post/post.component';
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import { PostEditComponent } from './private/forum/post-edit/post-edit.component';
+import { PostListComponent } from './private/forum/post-list/post-list.component';
+import {PostService} from "./private/forum/post.service";
 
 
 
@@ -47,7 +50,9 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
     OverviewComponent,
     AdminComponent,
     ForumComponent,
-    PostComponent
+    PostComponent,
+    PostEditComponent,
+    PostListComponent
   ],
   imports: [
     HttpModule,
@@ -72,7 +77,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
     AngularFireAuthModule
   ],
   entryComponents: [DialogComponent],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AuthService, CashService, AngularFireAuth, AngularFireDatabase, HttpClient, FirebaseDbService, RangesService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AuthService, CashService, AngularFireAuth, AngularFireDatabase, HttpClient, FirebaseDbService, RangesService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

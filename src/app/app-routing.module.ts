@@ -10,6 +10,8 @@ import {CashComponent} from './private/cash/cash.component';
 import {AdminComponent} from './private/admin/admin.component';
 import {ForumComponent} from './private/forum/forum.component';
 import {PostComponent} from './private/forum/post/post.component';
+import {PostEditComponent} from "./private/forum/post-edit/post-edit.component";
+import {PostListComponent} from "./private/forum/post-list/post-list.component";
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -22,7 +24,10 @@ const appRoutes: Routes = [
   {path: 'cash', component: CashComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'forum', component: ForumComponent, children: [
-    {path: 'post', component: PostComponent}
+    {path: '', component: PostListComponent},
+    {path: 'post/new', component: PostEditComponent},
+    {path: 'post/:id', component: PostComponent},
+    {path: 'post/:id/edit', component: PostEditComponent}
   ]}
 ];
 

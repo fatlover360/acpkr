@@ -1,1 +1,168 @@
-<h1>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+<!-- Page Content -->
+<mat-spinner *ngIf="loadingPostDetail"></mat-spinner>
+
+<div class="container" *ngIf="!loadingPostDetail">
+
+  <button (click)="edit()" type="button" class="btn btn-primary">Edit</button>
+  <button type="button" (click)="deletePost()" class="btn btn-primary">Delete</button>
+  <div class="row">
+
+    <!-- Post Content Column -->
+    <div class="col-lg-12">
+
+      <!-- Title -->
+      <h1 class="mt-4">{{post.title}}</h1>
+
+      <!-- Author -->
+      <p class="lead">
+        by
+        <a href="#">{{post.username}}</a>
+      </p>
+
+      <hr>
+
+      <!-- Date/Time -->
+      <p>{{post.date | date: 'medium'}}</p>
+
+      <hr style="margin-bottom: 50px">
+
+      <!-- Preview Image -->
+      <div class="main">
+
+        <div class="seats st{{i}}" *ngFor="let seat of game.seats; let i = index;">
+          <div class="card-small" *ngIf="game.seats[i].cardOne !== null">
+            <p class="card-text ">{{game.seats[i].cardOne.substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.seats[i].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.seats[i].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.seats[i].cardOne.substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.seats[i].cardOne.substring(1,2)=== 's'">&spades;</p>
+          </div>
+          <div class="card-small" *ngIf="game.seats[i].cardTwo !== null">
+            <p class="card-text ">{{game.seats[i].cardTwo.substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.seats[i].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.seats[i].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.seats[i].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.seats[i].cardTwo.substring(1,2)=== 's'">&spades;</p>
+          </div>
+          <div class="card-small null" *ngIf="game.seats[i].cardOne === null">
+
+
+          </div>
+          <div class="card-small null" *ngIf="game.seats[i].cardTwo === null">
+
+
+          </div>
+        </div>
+
+
+
+        <div class="table">
+          <div class="board">
+            <div class="card-small">
+              <p class="card-text">{{game.flop.split(' ')[0].substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small">
+              <p class="card-text ">{{game.flop.split(' ')[1].substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small">
+              <p class="card-text ">{{game.flop.split(' ')[2].substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small">
+              <p class="card-text ">{{game.turn.split(' ')[0].substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small">
+              <p class="card-text ">{{game.river.split(' ')[0].substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top: 100px">
+
+
+      <!-- Post Content -->
+      <p style="font-size: 10pt" *ngFor="let line of post.content; let i = index;">{{post.content[i]}}</p>
+
+
+      <!-- Comments Form -->
+      <div class="card my-4">
+        <h5 class="card-header">Leave a Comment:</h5>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Single Comment -->
+      <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
+          vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
+          lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <!-- Comment with nested comments -->
+      <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
+          vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
+          lacinia congue felis in faucibus.
+
+          <div class="media mt-4">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+              <h5 class="mt-0">Commenter Name</h5>
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
+              odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+              fringilla. Donec lacinia congue felis in faucibus.
+            </div>
+          </div>
+
+          <div class="media mt-4">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+              <h5 class="mt-0">Commenter Name</h5>
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
+              odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+              fringilla. Donec lacinia congue felis in faucibus.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- /.row -->
+
+</div>
