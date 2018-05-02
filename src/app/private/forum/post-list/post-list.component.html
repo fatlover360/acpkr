@@ -1,5 +1,5 @@
 <div class="container">
-  <a routerLink="post/new" class="btn btn-primary" style="margin-bottom: 50px">New Post</a>
+  <button routerLink="post/new" class="btn" style="margin-bottom: 50px">New Post</button>
   <div class="row">
 
 
@@ -18,7 +18,7 @@
           <div class="card-body">
             <h2 class="card-title">{{post.title}}</h2>
             <p class="card-text">{{post.content.substring(0,350)}} {{post.content.length > 350 ? ' ...' : ''}} </p>
-            <a routerLink="post/{{post.id}}" class="btn btn-primary">Open &rarr;</a>
+            <button routerLink="post/{{post.id}}" class="btn">Open &rarr;</button>
           </div>
           <div class="card-footer text-muted">
             {{post.date | date: 'medium'}}
@@ -52,7 +52,7 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Go!</button>
+                  <button class="btn" type="button">Go!</button>
                 </span>
           </div>
         </div>

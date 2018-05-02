@@ -3,9 +3,10 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment.prod';
 import {Post} from '../../model/post.model';
-import {Observable} from "rxjs/Observable";
-import {Game} from "../../model/game.model";
-import {PagepostModel} from "../../model/pagepost.model";
+import {Observable} from 'rxjs/Observable';
+import {Game} from '../../model/game.model';
+import {PagepostModel} from '../../model/pagepost.model';
+import {Comment} from '../../model/comment.model';
 
 @Injectable()
 export class PostService {
@@ -43,7 +44,17 @@ export class PostService {
   getGame(id: number): Observable<Game> {
     return this.http.get(environment.baseUrl + '/posts/hand/' + id).map(data => <Game> data);
   }
+  saveComment(commnet: Comment) {
+    return this.http.post(environment.baseUrl + '/posts/comment/add', commnet, {headers: this.httpOptions.headers});
+  }
 
+  getCommentaries(id: number): Observable<Comment []> {
+    return this.http.get(environment.baseUrl + '/posts/comments/all/' + id ).map(data => <Comment []> data);
+  }
+
+  deleteCommentary(comment: Comment) {
+    return this.http.delete(environment.baseUrl + '/posts/comment/delete/' + comment.id);
+  }
   /*
 
   getModel(): Observable<Ranges []> {

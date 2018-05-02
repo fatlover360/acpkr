@@ -23,7 +23,6 @@ import { OverviewComponent } from './private/overview/overview.component';
 import { AdminComponent } from './private/admin/admin.component';
 import {ChartsModule} from 'ng2-charts';
 import {FirebaseDbService} from './storage/firebase-db.service';
-import {FullCalendarModule} from 'ng-fullcalendar';
 import {CashService} from './private/cash/cash.service';
 import {HttpModule} from "@angular/http";
 import {RangesService} from "./private/ranges/ranges.service";
@@ -58,7 +57,6 @@ import {PostService} from "./private/forum/post.service";
     HttpModule,
     BrowserModule,
     MaterialModule,
-    FullCalendarModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,

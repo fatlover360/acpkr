@@ -1,110 +1,184 @@
-.main {
-  height: 300px;
+.btn {
+  border-radius: 0 !important;
+  cursor: pointer;
 }
 
-.table {
-  background-color: green;
-  height: 350px;
-  width: 70%;
-  border-radius: 50%;
-  margin: 0 auto;
-  border: 1em solid black;
-}
+/*
+chat
+ */
 
-.board {
+.talk-bubble {
+  margin: 20px;
+  display: inline-block;
   position: relative;
-  top: 20%;
-  left: 27%;
-}
-.card-small {
-  border: .2em solid black;
-  border-radius: 10%;
-  height: 80px;
-  width: 56px; /*70% of height*/
-  margin-right: 5px;
-  float: left;
-  background-color: white;
+  width: 75%;
+  height: auto;
+  background-color: lightgrey;
 }
 
-.card-text {
-  margin: 0;
-  margin-top: 15%;
-  text-align: center;
-  padding: 0;
-  font-weight: bold;
+.tri-right.border.left-top:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -40px;
+  right: auto;
+  top: -8px;
+  bottom: auto;
+  border: 32px solid;
+  border-color: #666 transparent transparent transparent;
 }
 
-.card-img {
-  text-align: center;
-  margin: 0;
-  font-size: 2em;
+.tri-right.left-top:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -20px;
+  right: auto;
+  top: 0px;
+  bottom: auto;
+  border: 22px solid;
+  border-color: lightgrey transparent transparent transparent;
 }
 
-.red {
-  color: red;
+.talktext {
+  padding: 1em;
+  text-align: left;
+  line-height: 1.5em;
 }
 
-.black {
-  color: black;
+.talktext p {
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
 }
 
-.null {
-  background-color: darkred;
+/*
+cards and table
+ */
+@media screen and (min-width: 1200px) {
+
+  .handaction {
+    position: relative;left: 90%;
+  }
+
+  .main {
+    height: 300px;
+  }
+
+  .table {
+    background-color: green;
+    height: 350px;
+    width: 70%;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 1em solid black;
+  }
+
+  .board {
+    position: relative;
+    display: inline-block;
+    top: 20%;
+    left: 32.5%;
+  }
+
+  .card-small {
+    border: .2em solid black;
+    border-radius: 10%;
+    height: 65px;
+    width: 41px; /*70% of height*/
+    margin-right: 5px;
+    float: left;
+    background-color: white;
+  }
+
+  .card-text {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: -10px;
+  }
+
+  .card-img {
+    text-align: center;
+    margin-bottom: 0px;
+    font-size: 2em;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .black {
+    color: black;
+  }
+
+  .null {
+    background-color: darkred;
+  }
+
+  .st0 {
+    position: relative;
+    top: 95%;
+    left: 70%;
+  }
+
+  .st1 {
+    position: relative;
+    top: 105%;
+    left: 40%;
+  }
+
+  .st2 {
+    position: relative;
+    top: 100%;
+    left: 10%;
+  }
+
+  .st3 {
+    position: relative;
+    top: 70%;
+    left: -15%;
+  }
+
+  .st4 {
+    position: relative;
+    top: 20%;
+    left: -20%;
+  }
+
+  .st5 {
+    position: relative;
+    top: -10%;
+    left: -10.5%;
+  }
+
+  .st6 {
+    position: relative;
+    top: -12%;
+    left: 5%;
+  }
+
+  .st7 {
+    position: relative;
+    top: 5%;
+    left: 15%;
+  }
+
+  .st8 {
+    position: relative;
+    top: 55%;
+    left: 15%;
+  }
+
 }
 
-.st0 {
-  position: relative;
-  top: 90%;
-  left: 60%;
+@media screen and (max-width: 300px) {
+  .card-small {
+    display: none;
+  }
 }
 
-.st1 {
-  position: relative;
-  top: 100%;
-  left: 30%;
-}
-
-.st2 {
-  position: relative;
-  top: 70%;
-  left: -10%;
-}
-
-.st3 {
-  position: relative;
-  top: 20%;
-  left: -20%;
-}
-
-.st4 {
-  position: relative;
-  top: -10%;
-  left: -5%;
-}
-
-.st5 {
-  position: relative;
-  top: -5%;
-  left: 5%;
-}
-
-.st6 {
-  position: relative;
-  top: 10%;
-  left: 10%;
-}
-
-.st7 {
-  position: relative;
-  top: 50%;
-  left: 5%;
-}
-
-.st7 {
-  position: relative;
-  top: 60%;
-  left: 0%;
-}
 
 
 
