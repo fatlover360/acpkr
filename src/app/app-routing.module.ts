@@ -17,6 +17,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'users', component: UsersComponent},
+  {path: 'ranges', component: RangesComponent},
   {path: 'ranges_static', component: RangesComponent},
   {path: 'ranges_bb', component: RangesComponent},
   {path: 'profile', component: ProfileComponent},

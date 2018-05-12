@@ -9,6 +9,9 @@
       <ul class="navbar-nav ml-auto">
         <ng-template [ngIf]="authService.isAuthenticated()">
           <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="/ranges">Ranges</a>
+          </li>
+          <li routerLinkActive="active" class="nav-item">
             <a class="nav-link" routerLink="/ranges_static">Static Ranges</a>
           </li>
           <li routerLinkActive="active" class="nav-item">

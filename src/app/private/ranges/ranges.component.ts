@@ -47,8 +47,10 @@ export class RangesComponent implements OnInit {
       (url: UrlSegment[]) => {
         if (url[0].path === 'ranges_bb') {
           this.gametypeSelected = 'BB Ranges';
-        } else {
+        } else if (url[0].path === 'ranges_static') {
           this.gametypeSelected = 'Static Ranges';
+        } else {
+          this.gametypeSelected = 'Ranges';
         }
       }
     );
