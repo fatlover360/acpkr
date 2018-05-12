@@ -7,10 +7,15 @@ import {AuthService} from '../auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  collapsed = true;
 
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
+  }
+
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
   }
 
   logout() {
