@@ -17,6 +17,7 @@ export class PostEditComponent implements OnInit {
   title = 'New Post';
   postForm: FormGroup = null;
   postTitle = '';
+  pokerHouse = '';
   postDescription: string [] = [];
   description = '';
   loadingPost = false;
@@ -41,6 +42,7 @@ export class PostEditComponent implements OnInit {
   private initForm() {
     this.loadingPost = true;
     this.postTitle = '';
+    this.pokerHouse = '';
     this.postDescription = [];
     if (this.editMode) {
       this.postService.getId(this.id).subscribe(post => {
@@ -53,14 +55,16 @@ export class PostEditComponent implements OnInit {
         this.postEdit = post;
         this.postForm = new FormGroup({
           'title': new FormControl(this.postTitle, Validators.required),
-          'description': new FormControl(this.description, Validators.required)
+          'description': new FormControl(this.description, Validators.required),
+          'pokerhouse': new FormControl(this.pokerHouse, Validators.required)
         });
         this.loadingPost = false;
       });
     }else {
       this.postForm = new FormGroup({
         'title': new FormControl(this.postTitle, Validators.required),
-        'description': new FormControl(this.description, Validators.required)
+        'description': new FormControl(this.description, Validators.required),
+        'pokerhouse': new FormControl(this.pokerHouse, Validators.required)
       });
       this.loadingPost = false;
     }
@@ -71,12 +75,13 @@ export class PostEditComponent implements OnInit {
       this.postForm.value['title'],
       this.postForm.value['description'],
       this.auth.currentUser.uid,
-      new Date(), null, 0, this.auth.currentUser.email);
+      new Date(), null, 0, this.auth.currentUser.email, this.postForm.value['pokerhouse']);
 
     if (this.editMode) {
       this.postEdit.editDate = new Date();
       this.postEdit.title = this.postForm.value['title'];
       this.postEdit.content = this.postForm.value['description'];
+      this.postEdit.pokerHouse = this.postForm.value['pokerhouse'];
       this.postService.editPost(this.postEdit).subscribe( data => {
         this.snackBar.open('Post saved', '', {
           duration: 2000

@@ -86,7 +86,7 @@
               <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
               <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
             </div>
-            <div class="card-small river" *ngIf="game.flop !== null" >
+            <div class="card-small river" *ngIf="game.river !== null" >
               <p class="card-text ">{{game.river.split(' ')[0].substring(0,1)}}</p>
               <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
               <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
