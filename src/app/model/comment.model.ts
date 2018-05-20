@@ -10,7 +10,7 @@ export class Comment {
   likes: number;
   post: Post;
 
-  constructor(id: number, content: string, uid: string, date: Date, editDate: Date,  likes: number, username: string, post: Post) {
+  constructor(content: string, uid: string, date: Date, editDate: Date,  likes: number, username: string, post: Post) {
     this.content = content;
     this.uid = uid;
     this.date = date;

@@ -2,11 +2,9 @@
 <mat-spinner *ngIf="loadingPostDetail"></mat-spinner>
 
 <div class="container" *ngIf="!loadingPostDetail">
-
   <button *ngIf="postIsMine()" (click)="edit()" type="button" class="btn">Edit</button>
   <button *ngIf="postIsMine()" type="button" (click)="deletePost()" class="btn">Delete</button>
   <div class="row">
-
     <!-- Post Content Column -->
     <div class="col-lg-12">
 
@@ -24,12 +22,52 @@
       <!-- Date/Time -->
       <p>{{post.date | date: 'medium'}}</p>
 
-      <hr style="margin-bottom: 50px">
-
+      <hr>
+      <div class="table">
+        <div class="board">
+          <div class="card-small flop" *ngIf="game.flop !== null">
+            <p class="card-text">{{game.flop.split(' ')[0].substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
+          </div>
+          <div class="card-small flop" *ngIf="game.flop !== null">
+            <p class="card-text ">{{game.flop.split(' ')[1].substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 's'">&spades;</p>
+          </div>
+          <div class="card-small flop" *ngIf="game.flop !== null">
+            <p class="card-text ">{{game.flop.split(' ')[2].substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 's'">&spades;</p>
+          </div>
+          <div class="card-small turn" *ngIf="game.turn !== null">
+            <p class="card-text ">{{game.turn.split(' ')[0].substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
+          </div>
+          <div class="card-small river" *ngIf="game.river !== null">
+            <p class="card-text ">{{game.river.split(' ')[0].substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
+          </div>
+        </div>
+      </div>
       <!-- Preview Image -->
       <div class="main">
-
-        <div class="seats st{{i}}" *ngFor="let seat of game.seats; let i = index;">
+        <span class="seatBU{{game.buttonSeat}}">BU</span>
+        <span class="small seatBU{{getSmallBlindNumber(game.buttonSeat)}}">Small</span>
+        <span class="big seatBU{{getSmallBlindNumber(game.buttonSeat + 1)}}">Big</span>
+        <div class="seats st{{seat.number}}" *ngFor="let seat of game.seats; let i = index;">
           <div class="card-small" *ngIf="game.seats[i].cardOne !== null">
             <p class="card-text ">{{game.seats[i].cardOne.substring(0,1)}}</p>
             <p class="card-img black" *ngIf="game.seats[i].cardOne.substring(1,2)=== 'c'">&clubs;</p>
@@ -52,63 +90,22 @@
 
 
           </div>
+
         </div>
 
 
 
-        <div class="table">
-          <div class="board">
-            <div class="card-small flop" *ngIf="game.flop !== null">
-              <p class="card-text">{{game.flop.split(' ')[0].substring(0,1)}}</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
-            </div>
-            <div class="card-small flop" *ngIf="game.flop !== null">
-              <p class="card-text ">{{game.flop.split(' ')[1].substring(0,1)}}</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'c'">&clubs;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'h'">&hearts;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'd'">&diams;</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 's'">&spades;</p>
-            </div>
-            <div class="card-small flop" *ngIf="game.flop !== null">
-              <p class="card-text ">{{game.flop.split(' ')[2].substring(0,1)}}</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'c'">&clubs;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'h'">&hearts;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'd'">&diams;</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 's'">&spades;</p>
-            </div>
-            <div class="card-small turn" *ngIf="game.turn !== null">
-              <p class="card-text ">{{game.turn.split(' ')[0].substring(0,1)}}</p>
-              <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
-              <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
-              <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
-              <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
-            </div>
-            <div class="card-small river" *ngIf="game.river !== null" >
-              <p class="card-text ">{{game.river.split(' ')[0].substring(0,1)}}</p>
-              <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
-              <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
-              <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
-              <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
-            </div>
-          </div>
-        </div>
         <div class="handaction">
           <i class="material-icons">replay</i>
           <i class="material-icons">fast_forward</i>
         </div>
       </div>
 
-
-
-      <hr style="margin-top: 100px">
-
-
+      <hr style="margin-top: 200px">
 
       <!-- Post Content -->
-      <button type="submit" (click)="showContent()" class="btn">{{contentVisibility ? 'Hide text content': 'Show text content' }}</button>
+      <button type="submit" (click)="showContent()" class="btn">{{contentVisibility ? 'Hide text content': 'Show textcontent' }}
+      </button>
       <ng-template [ngIf]="contentVisibility">
         <p style="font-size: 10pt" *ngFor="let line of post.content; let i = index;">{{post.content[i]}}</p>
       </ng-template>
@@ -127,9 +124,14 @@
       </div>
       <!-- Single Comment -->
       <div class="media mb-4" *ngFor="let comment of comments">
-        <img class="d-flex mr-3 rounded-circle" src="http://qualiscare.com/wp-content/uploads/2017/08/default-user.png" alt="" style="height: 75px; width: 75px">
+        <img class="d-flex mr-3 rounded-circle" src="http://qualiscare.com/wp-content/uploads/2017/08/default-user.png"
+             alt="" style="height: 75px; width: 75px">
         <div class="media-body">
-          <h5 class="mt-0">{{comment.username}} at {{comment.date | date: 'medium'}} <i *ngIf="commentsIsMine(comment)" (click)="deleteComment(comment)" class="material-icons" style="font-size:20px;color:darkred;cursor: pointer">remove_circle</i></h5>
+          <h5 class="mt-0">{{comment.username}} at {{comment.date | date: 'medium'}} <i *ngIf="commentsIsMine(comment)"
+                                                                                        (click)="deleteComment(comment)"
+                                                                                        class="material-icons"
+                                                                                        style="font-size:20px;color:darkred;cursor: pointer">remove_circle</i>
+          </h5>
 
           <div class="talk-bubble tri-right left-top">
             <div class="talktext">

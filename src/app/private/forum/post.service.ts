@@ -53,6 +53,7 @@ export class PostService {
   }
 
   deleteCommentary(comment: Comment) {
+    console.log(comment.id);
     return this.http.delete(environment.baseUrl + '/posts/comment/delete/' + comment.id);
   }
   /*

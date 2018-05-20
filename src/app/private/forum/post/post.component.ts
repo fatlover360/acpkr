@@ -48,7 +48,7 @@ export class PostComponent implements OnInit {
     this.loadingPostDetail = true;
     const ctnt = this.post.content;
     this.post.content = null;
-    const commentToAdd = new Comment(null, this.commentForm.value['comment'], this.auth.currentUser.uid, new Date(), null, 0, this.auth.currentUser.email, this.post);
+    const commentToAdd = new Comment(this.commentForm.value['comment'], this.auth.currentUser.uid, new Date(), null, 0, this.auth.currentUser.email, this.post);
     this.postService.saveComment(commentToAdd).subscribe( data => {
       this.snackBar.open('Comment saved', '', {duration: 2000});
       this.post.content = ctnt;
@@ -75,6 +75,14 @@ export class PostComponent implements OnInit {
         this.getCommentaries(id);
       });
     });
+  }
+  getSmallBlindNumber(number: number) {
+    const lastSeat = this.game.seats.length - 1;
+    if (number < this.game.seats[lastSeat].number) {
+      return number + 1;
+    }else {
+      return 1;
+    }
   }
 
   edit() {
@@ -104,7 +112,7 @@ export class PostComponent implements OnInit {
   }
 
   commentsIsMine(commentToCheck: Comment) {
-    if(commentToCheck.uid === this.auth.currentUser.uid) {
+    if (commentToCheck.uid === this.auth.currentUser.uid) {
       return true;
     } else {
       return false;
