@@ -2,11 +2,11 @@
   border-radius: 0 !important;
   cursor: pointer;
 }
-
-
-
-
+div.seats, div.board {
+  display: inline-flex !important;
+}
 /*
+
 chat
  */
 
@@ -62,11 +62,7 @@ cards and table
  */
 @media screen and (min-width: 1200px) {
 
-  .handaction {
-    position: relative;
-    left: 90%;
-    cursor: pointer;
-  }
+
 
   .main {
     height: 0px;
@@ -125,52 +121,50 @@ cards and table
   }
 
 
-  .seats{
-    width: 100px;
-    height: 100px;
-    margin-right: 0%;
-  }
-
 
   .st1 {
-    transform: translate(500px,-50px);
+    transform: translate(0px,0px);
+
 
   }
 
   .st2 {
-    transform: translate(300px,-175px);
+    transform: translate(100px,-50px);
   }
 
   .st3 {
-    transform: translate(130px,-350px);
+    transform: translate(200px,-60px);
   }
 
   .st4 {
-    transform: translate(130px,-600px);
 
+    transform: translate(300px,-30px);
   }
 
 
   .st5 {
-    transform: translate(300px,-790px);
+    transform: translate(350px,70px);
+
   }
 
   .st6 {
-    transform: translate(500px,-920px);
+    transform: translate(-100px,310px);
   }
 
   .st7 {
-    transform: translate(700px,-1000px);
+    transform: translate(20px,270px);
   }
 
   .st8 {
-    transform: translate(920px,-950px);
+    transform: translate(50px,170px);
   }
 
 
   .st9 {
-    transform: translate(700px,-250px);
+    transform: translate(-80px,70px);
   }
+
+
 
   .seatBU1{
     background-color: #2196F3;
@@ -180,8 +174,6 @@ cards and table
     font-size: 9pt;
     text-align: center;
     position: relative;
-    top: 90%;
-    left: 70%;
     border: 4px solid red;
   }
 
@@ -193,8 +185,7 @@ cards and table
     font-size: 9pt;
     text-align: center;
     position: relative;
-    top: 97%;
-    left: 50%;
+
   }
 
   .seatBU3{
@@ -205,8 +196,7 @@ cards and table
     font-size: 9pt;
     text-align: center;
     position: relative;
-    top: 95%;
-    left: 35%;
+
   }
 
   .seatBU4{
@@ -217,11 +207,10 @@ cards and table
     font-size: 9pt;
     text-align: center;
     position: relative;
-    top: 85%;
-    left: 23%;
+
   }
 
-  .seatBU5{
+  .seatBU5 {
     background-color: #2196F3;
     width: 22px;
     height: 22px;
@@ -229,8 +218,7 @@ cards and table
     font-size: 9pt;
     text-align: center;
     position: relative;
-    top: 55%;
-    left: 23%;
+
   }
 
   .seatBU6{
@@ -241,8 +229,6 @@ cards and table
     font-size: 9pt;
     text-align: center;
     position: relative;
-    top: 35%;
-    left: 35%;
     margin-right: 0px;
   }
 
@@ -254,8 +240,6 @@ cards and table
     font-size: 9pt;
     text-align: center;
     position: relative;
-    top: 35%;
-    left: 55%;
   }
 
   .seatBU8{
@@ -266,9 +250,6 @@ cards and table
     font-size: 9pt;
     text-align: center;
     position: relative;
-    top: 40%;
-    left: 70%;
-
   }
 
   .seatBU9{
@@ -279,8 +260,6 @@ cards and table
     font-size: 9pt;
     text-align: center;
     position: relative;
-    top: 70%;
-    left: 75%;
   }
 
   .small {
