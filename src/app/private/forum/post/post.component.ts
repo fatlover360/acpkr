@@ -77,14 +77,37 @@ export class PostComponent implements OnInit {
     });
   }
   getSmallBlindNumber(number: number) {
+
     const lastSeat = this.game.seats.length - 1;
     if (number < this.game.seats[lastSeat].number) {
+
       return number + 1;
     }else {
+
       return 1;
     }
   }
 
+  getBigBlindNumber(small: number) {
+    const lastSeat = this.game.seats.length - 1;
+    if (small < this.game.seats[lastSeat].number - 1 ) {
+      return small + 1;
+    }else {
+
+      return 1;
+    }
+  }
+
+  getIndex(seatNumber: number) {
+    let index = 0;
+    for(let i = 0; i < this.game.seats.length; i++) {
+      if (this.game.seats[i].number === seatNumber){
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
   edit() {
     this.router.navigate(['../' + this.id + '/edit'], {relativeTo: this.route});
   }

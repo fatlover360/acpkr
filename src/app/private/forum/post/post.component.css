@@ -155,15 +155,12 @@ cards and table
   }
 
   .st8 {
-    transform: translate(50px,170px);
+    transform: translate(90px,170px);
   }
-
 
   .st9 {
-    transform: translate(-80px,70px);
+    transform: translate(-180px,100px);
   }
-
-
 
   .seatBU1{
     transform: translate(-150px,-30px);

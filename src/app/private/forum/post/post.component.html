@@ -27,30 +27,234 @@
     <hr>
 
     <div class="table">
-      <div class="seats st{{seat.number}}" *ngFor="let seat of game.seats; let i = index;">
-        <div class="card-small" *ngIf="game.seats[i].cardOne !== null">
-          <p class="card-text ">{{game.seats[i].cardOne.substring(0,1)}}</p>
-          <p class="card-img black" *ngIf="game.seats[i].cardOne.substring(1,2)=== 'c'">&clubs;</p>
-          <p class="card-img red" *ngIf="game.seats[i].cardOne.substring(1,2)=== 'h'">&hearts;</p>
-          <p class="card-img red" *ngIf="game.seats[i].cardOne.substring(1,2)=== 'd'">&diams;</p>
-          <p class="card-img black" *ngIf="game.seats[i].cardOne.substring(1,2)=== 's'">&spades;</p>
+      <div class="seats st1">
+        <div class="card-small" *ngIf="game.seats[getIndex(1)].cardOne !== null">
+          <p class="card-text ">{{game.seats[getIndex(1)].cardOne.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 's'">&spades;</p>
         </div>
-        <div class="card-small" *ngIf="game.seats[i].cardTwo !== null">
-          <p class="card-text ">{{game.seats[i].cardTwo.substring(0,1)}}</p>
-          <p class="card-img black" *ngIf="game.seats[i].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
-          <p class="card-img red" *ngIf="game.seats[i].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
-          <p class="card-img red" *ngIf="game.seats[i].cardTwo.substring(1,2)=== 'd'">&diams;</p>
-          <p class="card-img black" *ngIf="game.seats[i].cardTwo.substring(1,2)=== 's'">&spades;</p>
+        <div class="card-small" *ngIf="game.seats[getIndex(1)].cardTwo !== null">
+          <p class="card-text ">{{game.seats[getIndex(1)].cardTwo.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 's'">&spades;</p>
         </div>
-        <div class="card-small null" *ngIf="game.seats[i].cardOne === null">
+        <div class="card-small null" *ngIf="game.seats[getIndex(1)].cardOne === null">
 
 
         </div>
-        <div class="card-small null" *ngIf="game.seats[i].cardTwo === null">
+        <div class="card-small null" *ngIf="game.seats[getIndex(1)].cardTwo === null">
 
 
         </div>
       </div>
+
+      <div class="seats st2">
+        <div class="card-small" *ngIf="game.seats[getIndex(2)].cardOne !== null">
+          <p class="card-text ">{{game.seats[getIndex(2)].cardOne.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small" *ngIf="game.seats[getIndex(2)].cardTwo !== null">
+          <p class="card-text ">{{game.seats[getIndex(2)].cardTwo.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(2)].cardOne === null">
+
+
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(2)].cardTwo === null">
+
+
+        </div>
+      </div>
+
+      <div class="seats st3">
+        <div class="card-small" *ngIf="game.seats[getIndex(3)].cardOne !== null">
+          <p class="card-text ">{{game.seats[getIndex(3)].cardOne.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small" *ngIf="game.seats[getIndex(3)].cardTwo !== null">
+          <p class="card-text ">{{game.seats[getIndex(3)].cardTwo.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(3)].cardOne === null">
+
+
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(3)].cardTwo === null">
+
+
+        </div>
+      </div>
+
+      <div class="seats st4">
+        <div class="card-small" *ngIf="game.seats[getIndex(4)].cardOne !== null">
+          <p class="card-text ">{{game.seats[getIndex(4)].cardOne.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small" *ngIf="game.seats[getIndex(4)].cardTwo !== null">
+          <p class="card-text ">{{game.seats[getIndex(4)].cardTwo.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(4)].cardOne === null">
+
+
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(4)].cardTwo === null">
+
+
+        </div>
+      </div>
+
+      <div class="seats st5">
+        <div class="card-small" *ngIf="game.seats[getIndex(5)].cardOne !== null">
+          <p class="card-text ">{{game.seats[getIndex(5)].cardOne.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small" *ngIf="game.seats[getIndex(5)].cardTwo !== null">
+          <p class="card-text ">{{game.seats[getIndex(5)].cardTwo.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(5)].cardOne === null">
+
+
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(5)].cardTwo === null">
+
+
+        </div>
+      </div>
+
+      <div class="seats st6">
+        <div class="card-small" *ngIf="game.seats[getIndex(6)].cardOne !== null">
+          <p class="card-text ">{{game.seats[getIndex(6)].cardOne.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small" *ngIf="game.seats[getIndex(6)].cardTwo !== null">
+          <p class="card-text ">{{game.seats[getIndex(6)].cardTwo.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(6)].cardOne === null">
+
+
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(6)].cardTwo === null">
+
+
+        </div>
+      </div>
+      <div class="seats st7">
+        <div class="card-small" *ngIf="game.seats[getIndex(7)].cardOne !== null">
+          <p class="card-text ">{{game.seats[getIndex(7)].cardOne.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small" *ngIf="game.seats[getIndex(7)].cardTwo !== null">
+          <p class="card-text ">{{game.seats[getIndex(7)].cardTwo.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(7)].cardOne === null">
+
+
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(7)].cardTwo === null">
+
+
+        </div>
+      </div>
+      <div class="seats st8">
+        <div class="card-small" *ngIf="game.seats[getIndex(8)].cardOne !== null">
+          <p class="card-text ">{{game.seats[getIndex(8)].cardOne.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small" *ngIf="game.seats[getIndex(8)].cardTwo !== null">
+          <p class="card-text ">{{game.seats[getIndex(8)].cardTwo.substring(0,1)}}</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+          <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+          <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(8)].cardOne === null">
+
+
+        </div>
+        <div class="card-small null" *ngIf="game.seats[getIndex(8)].cardTwo === null">
+
+
+        </div>
+      </div>
+
+      <div class="seats st9">
+      <div class="card-small" *ngIf="game.seats[getIndex(9)].cardOne !== null">
+        <p class="card-text ">{{game.seats[getIndex(9)].cardOne.substring(0,1)}}</p>
+        <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+        <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+        <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+        <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 's'">&spades;</p>
+      </div>
+      <div class="card-small" *ngIf="game.seats[getIndex(9)].cardTwo !== null">
+        <p class="card-text ">{{game.seats[getIndex(9)].cardTwo.substring(0,1)}}</p>
+        <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+        <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+        <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+        <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+      </div>
+      <div class="card-small null" *ngIf="game.seats[getIndex(9)].cardOne === null">
+
+
+      </div>
+      <div class="card-small null" *ngIf="game.seats[getIndex(9)].cardTwo === null">
+
+
+      </div>
+    </div>
+
+
+
+
+
+
       <div class="board">
         <div class="card-small flop" *ngIf="game.flop !== null">
           <p class="card-text">{{game.flop.split(' ')[0].substring(0,1)}}</p>
@@ -90,7 +294,7 @@
       </div>
       <span class="chip seatBU{{game.buttonSeat}}">BU</span>
       <span class="chip small seatBU{{getSmallBlindNumber(game.buttonSeat)}}">Small</span>
-      <span class="chip big seatBU{{getSmallBlindNumber(game.buttonSeat + 1)}}">Big</span>
+      <span class="chip big seatBU{{getBigBlindNumber(getSmallBlindNumber(game.buttonSeat))}}">Big</span>
       <span><i class="material-icons">replay</i></span>
       <span><i class="material-icons">fast_forward</i></span>
     </div>
@@ -99,7 +303,7 @@
     <hr>
     <!-- Post Content -->
     <button type="submit" (click)="showContent()" class="btn">{{contentVisibility ? 'Hide text content':
-      'Showtextcontent' }}
+      'Show text content' }}
     </button>
     <ng-template [ngIf]="contentVisibility">
       <p style="font-size: 10pt" *ngFor="let line of post.content; let i = index;">{{post.content[i]}}</p>
@@ -119,7 +323,6 @@
       </div>
     </div>
     <!-- Single Comment -->
-
 
 
   </div>

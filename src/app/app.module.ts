@@ -32,6 +32,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import { PostEditComponent } from './private/forum/post-edit/post-edit.component';
 import { PostListComponent } from './private/forum/post-list/post-list.component';
 import {PostService} from "./private/forum/post.service";
+import { VideosComponent } from './private/videos/videos.component';
 
 
 
@@ -51,7 +52,8 @@ import {PostService} from "./private/forum/post.service";
     ForumComponent,
     PostComponent,
     PostEditComponent,
-    PostListComponent
+    PostListComponent,
+    VideosComponent
   ],
   imports: [
     HttpModule,

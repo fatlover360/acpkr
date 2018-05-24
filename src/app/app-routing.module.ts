@@ -12,11 +12,13 @@ import {ForumComponent} from './private/forum/forum.component';
 import {PostComponent} from './private/forum/post/post.component';
 import {PostEditComponent} from "./private/forum/post-edit/post-edit.component";
 import {PostListComponent} from "./private/forum/post-list/post-list.component";
+import {VideosComponent} from "./private/videos/videos.component";
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'users', component: UsersComponent},
+  {path: 'videos', component: VideosComponent},
   {path: 'ranges', component: RangesComponent},
   {path: 'ranges_static', component: RangesComponent},
   {path: 'ranges_bb', component: RangesComponent},

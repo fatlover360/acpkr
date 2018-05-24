@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="container">
-    <div class="col-lg-12 row">
-      <div class="col-md-3 card">
+    <div class="col-lg-12 row" *ngIf="authService.isAuthenticated()">
+      <div class="col-md-3 card" (click)="navigate('users')">
         <img src="/assets/images/user.png">
       </div>
-      <div class="col-md-3 card">
-        <img src="/assets/images/play-button.png">
+      <div class="col-md-3 card" (click)="navigate('videos')">
+        <img src="/assets/images/play-button.png" >
       </div>
-      <div class="col-md-3 card">
-        <img src="/assets/images/forum.png">
+      <div class="col-md-3 card" (click)="navigate('forum')">
+        <img src="/assets/images/forum.png" >
       </div>
     </div>
   </div>
