@@ -201,6 +201,10 @@ cards and table
     transform: translate(-200px,70px);
   }
 
+  .material-icons {
+    transform: translate(500px,230px);
+  }
+
   .small {
     background-color: yellow !important;
   }
