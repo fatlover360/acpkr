@@ -14,6 +14,7 @@ export class DialogComponent implements OnInit {
   isDeposit: boolean;
   empty: boolean;
   types: boolean;
+  video: string;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogComponent>) { }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class DialogComponent implements OnInit {
     this.isDeposit = this.data.isDeposit;
     this.empty = this.data.empty;
     this.types = this.data.types;
+    this.video = this.data.video;
   }
 
   onNoClick(): void {
