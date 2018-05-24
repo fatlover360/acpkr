@@ -88,12 +88,9 @@
           <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
         </div>
       </div>
-      <span class="chip seatBU7">BU</span>
-      <span class="chip small seatBU8">Small</span>
-      <span class="chip big seatBU9">Big</span>
-      <!--span class="chip seatBU{{game.buttonSeat}}">BU</span>
+      <span class="chip seatBU{{game.buttonSeat}}">BU</span>
       <span class="chip small seatBU{{getSmallBlindNumber(game.buttonSeat)}}">Small</span>
-      <span class="chip big seatBU{{getSmallBlindNumber(game.buttonSeat + 1)}}">Big</span-->
+      <span class="chip big seatBU{{getSmallBlindNumber(game.buttonSeat + 1)}}">Big</span>
       <span><i class="material-icons">replay</i></span>
       <span><i class="material-icons">fast_forward</i></span>
     </div>

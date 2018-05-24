@@ -1,23 +1,19 @@
-<div class="content">
-  <form class="example-form" (ngSubmit)="onSingIn()">
-
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Email" [formControl]="emailControl"
-             [errorStateMatcher]="matcher">
-      <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
-        Please enter a valid email address
-      </mat-error>
-      <mat-error *ngIf="emailControl.hasError('required')">
-        Email is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Password" type="password" [formControl]="passwordControl">
-      <mat-error *ngIf="passwordControl.hasError('required')">
-        Password is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Login</button>
-  </form>
+<div class="container-fluid">
+  <div class="login-page">
+    <div class="form">
+      <form class="login-form" (ngSubmit)="onSingIn()">
+        <input type="text" placeholder="email" [formControl]="emailControl"/>
+        <p *ngIf="emailControl.hasError('required') && sent">
+          Email is <strong>required</strong>
+        </p>
+        <input type="password" placeholder="password" [formControl]="passwordControl"/>
+        <p *ngIf="passwordControl.hasError('required') && sent">
+          Password is <strong>required</strong>
+        </p>
+        <button type="submit">login</button>
+      </form>
+    </div>
+  </div>
 </div>
+
+

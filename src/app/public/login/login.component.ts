@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   ]);
 
   matcher = new MyErrorStateMatcher();
+  sent = false;
 
   constructor(private authService: AuthService, private firebaseService: FirebaseDbService) { }
 
@@ -30,10 +31,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSingIn() {
-    this.authService.signInUser(this.emailControl.value, this.passwordControl.value);
-    setTimeout(() => {
-      this.firebaseService.createUser();
-    }, 2000);
+    this.sent = true;
+    if(!this.emailControl.hasError('required') && !this.passwordControl.hasError('required')) {
+      this.authService.signInUser(this.emailControl.value, this.passwordControl.value);
+      setTimeout(() => {
+        this.firebaseService.createUser();
+      }, 2000);
+    }
   }
 }
 

@@ -20,16 +20,6 @@
           <li routerLinkActive="active" class="nav-item">
             <a class="nav-link badge1" data-badge="27" routerLink="/forum">Forum</a>
           </li>
-          <li class="nav-item">
-            <a class="dropdown-toggle" data-toggle="dropdown">Page 1
-              <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Page 1-1</a></li>
-              <li><a href="#">Page 1-2</a></li>
-              <li><a href="#">Page 1-3</a></li>
-            </ul>
-          </li>
-
         </ng-template>
         <li routerLinkActive="active" class="nav-item">
           <a class="nav-link" routerLink="/login" *ngIf="!authService.isAuthenticated()" >Login</a>
