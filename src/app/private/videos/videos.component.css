@@ -1,0 +1,20 @@
+.videodv {z-index: 1000;
+  display: inline-block;
+  width: 300px;
+  height: 220px !important;
+  background-color: #343a40;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+}
+
+.videodv:hover {
+  opacity: 50;
+  background-color: black;
+}
+
+.video {
+  pointer-events: none;
+}
+
