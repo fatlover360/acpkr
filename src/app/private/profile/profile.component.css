@@ -1,0 +1,25 @@
+img {
+  border-radius: 10%;
+  margin-bottom: 20px;
+}
+
+.container {
+  margin-top: 70px;
+  background-color: white;
+  z-index: 1;
+  padding: 45px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.container-fluid{
+  background-color:#343a40 ;
+  height: 100vh;
+  overflow: auto;
+  margin-top: -100px;
+}
+
+.btn {
+  border-radius: 0 !important;
+  cursor: pointer;
+}
