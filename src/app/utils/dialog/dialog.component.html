@@ -44,27 +44,4 @@
   </mat-dialog-actions>
 </div>
 
-<div *ngIf="!loading && types" class="container-fluid">
 
-  <h2 mat-dialog-title>New Type</h2>
-  <mat-dialog-content>
-
-    <mat-form-field>
-      <input matInput [(ngModel)]="data.typeName" placeholder="Name ">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput [(ngModel)]="data.color" type="color">
-    </mat-form-field>
-
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-button class="btn btn-dark" (click)="onNoClick()">Cancel</button>
-    <button mat-button class="btn btn-dark" [mat-dialog-close]="data">Save</button>
-  </mat-dialog-actions>
-</div>
-
-<div *ngIf="!loading && video != null" class="container-fluid">
-  <iframe class="video" src="//www.youtube.com/embed/5KmC0-EUmMg?rel=0" height="600" width="1000" frameborder="0" allowfullscreen></iframe>
-
-</div>

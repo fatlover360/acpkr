@@ -14,18 +14,6 @@ export class VideosComponent implements OnInit {
   ngOnInit() {
   }
 
- show(url: string) {
-   const dialogRefCash = this.dialog.open(DialogComponent, {
-     height: '70%',
-     width: '60%',
-     disableClose: false,
-     data:
-       {
-         'video' : url
-       }
-   });
+ show() {
 
-   dialogRefCash.afterClosed().subscribe(res => {
-
-   });
 }}

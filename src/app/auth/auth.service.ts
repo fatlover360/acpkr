@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {DialogComponent} from '../utils/dialog/dialog.component';
 import {MatDialog} from '@angular/material';
 import {environment} from "../../environments/environment.prod";
+import {AngularFireDatabase} from "angularfire2/database";
 
 
 @Injectable()
@@ -14,20 +15,12 @@ export class AuthService {
   authState: any = null;
 
   constructor(private router: Router, public afAuth: AngularFireAuth, private http: HttpClient,
-              public dialog: MatDialog) {
+              public dialog: MatDialog, public af: AngularFireDatabase) {
     this.afAuth.authState.subscribe((auth) => {
       this.authState = auth;
     });
   }
 
-  signUpUser(email: string, password: string) {
-    this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.authState = user;
-        this.updateUserData();
-      })
-      .catch(error => console.log(error));
-  }
 
   signInUser(email: string, password: string) {
     this.openDialog();
@@ -102,14 +95,12 @@ export class AuthService {
   }
 
 
-  private updateUserData(): void {
-    // Writes user name and email to realtime db
-    // useful if your app displays information about users or for admin features
-    const path = environment.baseUrl + `users/${this.currentUserId}`; // Endpoint on firebase
-    const data = {
-      email: this.authState.email,
-      name: this.authState.displayName
-    };
+   updateUserData(displayName:string, photoUrl: string){
+    return this.afAuth.auth.currentUser.updateProfile({ displayName: displayName, photoURL: photoUrl});
+  }
+
+  sendEmail(email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(email);
   }
 
   openDialog() {

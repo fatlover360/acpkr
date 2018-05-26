@@ -1,75 +1,71 @@
 <div class="container-fluid">
-  <div class="container">
+  <div class="container" *ngIf="!loading">
     <h1>Profile</h1>
     <hr>
     <div class="row">
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-          <h6>Upload a different photo...</h6>
-
-          <input type="file" class="form-control">
+          <img [src]="photo" class="avatar img-circle" alt="avatar" height="200" width="200" *ngIf="photo">
+          <img src="http://marketline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" height="200" width="200" class="avatar img-circle" alt="avatar" *ngIf="photo === null">
         </div>
       </div>
 
       <!-- edit form column -->
       <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a>
+        <div *ngIf="authService.currentUser.displayName === null  || authService.currentUser.photoURL === null" class="alert alert-info alert-dismissable">
+          <a  class="panel-close close" data-dismiss="alert">×</a>
           Update your personal info.
         </div>
         <h3>Personal info</h3>
 
-        <form class="form-horizontal" role="form">
+
+        <form class="form-horizontal" role="form" [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="!loading">
+
           <div class="form-group">
-            <label class="col-lg-3 control-label">First name:*</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="Jane">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:*</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="Bishop">
+            <label class="col-md-3 control-label">Username:*</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text"  formControlName="userName">
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:*</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="janesemail@gmail.com">
+              <input class="form-control" type="text" formControlName="email" >
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-3 control-label">Username:*</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" value="janeuser">
+            <label class="col-lg-3 control-label">Photo URL:*</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" formControlName="photoURL" >
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-md-3 control-label">Password:*</label>
-            <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
-            </div>
+
+            <button style="margin-left: 17px" type="button" class="btn" (click)="enablePassword()">Reset password</button>
           </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Confirm password:*</label>
-            <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
-            </div>
-          </div>
+
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="button" class="btn" value="Save Changes">
-              <span></span>
-              <input type="reset" class="btn" value="Cancel">
+              <button
+                type="submit"
+                class="btn"
+                [disabled]="!profileForm">Save
+              </button>
+              <button type="button" class="btn" (click)="onCancel()">Cancel</button>
             </div>
           </div>
         </form>
       </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="loading">
+    <div class="spinnerCointainer">
+      <mat-spinner class="spinner"></mat-spinner>
     </div>
   </div>
 </div>

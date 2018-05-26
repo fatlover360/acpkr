@@ -23,3 +23,12 @@ img {
   border-radius: 0 !important;
   cursor: pointer;
 }
+
+.spinner {
+  margin-left: 40%;
+}
+.spinnerCointainer {
+  margin: 30%;
+  max-height: 600px;
+  max-width: 1000px;
+}
