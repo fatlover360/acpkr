@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   onSingIn() {
     this.sent = true;
-    if(!this.emailControl.hasError('required') && !this.passwordControl.hasError('required')) {
+    if (!this.emailControl.hasError('required') && !this.passwordControl.hasError('required')) {
       this.authService.signInUser(this.emailControl.value, this.passwordControl.value);
       setTimeout(() => {
         this.firebaseService.createUser();

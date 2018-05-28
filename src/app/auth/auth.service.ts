@@ -4,9 +4,9 @@ import {AngularFireAuth} from 'angularfire2/auth';
 
 import {HttpClient} from '@angular/common/http';
 import {DialogComponent} from '../utils/dialog/dialog.component';
-import {MatDialog} from '@angular/material';
-import {environment} from "../../environments/environment.prod";
-import {AngularFireDatabase} from "angularfire2/database";
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {environment} from '../../environments/environment.prod';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 
 @Injectable()
@@ -15,7 +15,7 @@ export class AuthService {
   authState: any = null;
 
   constructor(private router: Router, public afAuth: AngularFireAuth, private http: HttpClient,
-              public dialog: MatDialog, public af: AngularFireDatabase) {
+              public dialog: MatDialog, public af: AngularFireDatabase, public snackbar: MatSnackBar) {
     this.afAuth.authState.subscribe((auth) => {
       this.authState = auth;
     });
@@ -31,7 +31,10 @@ export class AuthService {
         this.router.navigate(['/home']);
         this.dialog.closeAll();
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        this.dialog.closeAll();
+        this.snackbar.open(error.message, '', {duration: 10000});
+      });
   }
 
   getUserId() {
@@ -95,8 +98,8 @@ export class AuthService {
   }
 
 
-   updateUserData(displayName:string, photoUrl: string){
-    return this.afAuth.auth.currentUser.updateProfile({ displayName: displayName, photoURL: photoUrl});
+  updateUserData(displayName: string, photoUrl: string) {
+    return this.afAuth.auth.currentUser.updateProfile({displayName: displayName, photoURL: photoUrl});
   }
 
   sendEmail(email: string) {

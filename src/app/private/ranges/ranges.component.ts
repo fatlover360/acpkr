@@ -5,7 +5,7 @@ import {Type} from '../../model/type.model';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {DialogComponent} from '../../utils/dialog/dialog.component';
 import {AuthService} from '../../auth/auth.service';
-import {ActivatedRoute, Params, UrlSegment} from "@angular/router";
+import {ActivatedRoute, Params, UrlSegment} from '@angular/router';
 
 @Component({
   selector: 'app-ranges',
@@ -15,9 +15,9 @@ import {ActivatedRoute, Params, UrlSegment} from "@angular/router";
 export class RangesComponent implements OnInit {
   blinds: any [] = [
     {'value': '10-15', 'color': 'darkred'},
-    {'value': '15-22', 'color': 'red'},
-    {'value': '22-30', 'color': 'orange'},
-    {'value': '30-40', 'color': 'yellow'},
+    {'value': '16-22', 'color': 'red'},
+    {'value': '23-30', 'color': 'orange'},
+    {'value': '31-40', 'color': 'yellow'},
     {'value': '40+', 'color': 'green'}];
   ranges: Ranges [] = [];
   rangesInMemory: Ranges[] = [];
