@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Cash} from "../../model/cash.model";
 
 @Component({
   selector: 'app-dialog',
@@ -23,6 +22,8 @@ export class DialogComponent implements OnInit {
     this.isDeposit = this.data.isDeposit;
     this.empty = this.data.empty;
     this.types = this.data.types;
+    console.log(this.types);
+    console.log(this.loading );
   }
 
   onNoClick(): void {

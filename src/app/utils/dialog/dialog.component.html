@@ -1,5 +1,25 @@
 <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
 
+<div *ngIf="!loading && types" class="container-fluid">
+
+  <h2 mat-dialog-title>New Type</h2>
+  <mat-dialog-content>
+
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.typeName" placeholder="Name ">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.color" type="color">
+    </mat-form-field>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button class="btn btn-dark" (click)="onNoClick()">Cancel</button>
+    <button mat-button class="btn btn-dark" [mat-dialog-close]="data">Save</button>
+  </mat-dialog-actions>
+</div>
+
 <div *ngIf="!loading && cash" class="container-fluid">
   <mat-dialog-content>
     <mat-form-field>
@@ -43,5 +63,7 @@
     <button mat-button [mat-dialog-close]="data.depositAmount">Save</button>
   </mat-dialog-actions>
 </div>
+
+
 
 
