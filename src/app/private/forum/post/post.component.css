@@ -78,10 +78,9 @@ cards and table
 
   .table {
     background-color: green;
-    height: 350px;
-    width: 70%;
+    height: 40%;
+    width: 76%;
     border-radius: 50%;
-    margin: 0 auto;
     border: 1em solid black;
   }
 
@@ -97,9 +96,8 @@ cards and table
     border-radius: 10%;
     height: 65px;
     width: 41px; /*70% of height*/
-    margin-right: 5px;
-    float: left;
     background-color: white;
+    display: inline-block;
   }
 
   .card-text {
@@ -126,80 +124,9 @@ cards and table
     background-color: darkred;
   }
 
-  .st1 {
-    transform: translate(0px,0px);
-  }
-
-  .st2 {
-    transform: translate(100px,-50px);
-  }
-
-  .st3 {
-    transform: translate(200px,-60px);
-  }
-
-  .st4 {
-    transform: translate(300px,-30px);
-  }
-
-  .st5 {
-    transform: translate(350px,70px);
-  }
-
-  .st6 {
-    transform: translate(-100px,310px);
-  }
-
-  .st7 {
-    transform: translate(20px,270px);
-  }
-
-  .st8 {
-    transform: translate(90px,170px);
-  }
-
-  .st9 {
-    transform: translate(-180px,100px);
-  }
-
-  .seatBU1{
-    transform: translate(-150px,-30px);
-  }
-
-  .seatBU2{
-    transform: translate(50px,-70px);
-  }
-
-  .seatBU3{
-    transform: translate(230px,-70px);
-  }
-
-  .seatBU4{
-    transform: translate(370px,-30px);
-  }
-
-  .seatBU5 {
-    transform: translate(460px,70px);
-  }
-
-  .seatBU6{
-    transform: translate(300px,200px);
-  }
-
-  .seatBU7{
-    transform: translate(90px,240px);
-  }
-
-  .seatBU8{
-    transform: translate(-80px,200px);
-  }
-
-  .seatBU9{
-    transform: translate(-200px,70px);
-  }
-
   .material-icons {
-    transform: translate(500px,230px);
+    /*transform: translate(500px,230px);*/
+    color: black;
   }
 
   .small {
@@ -216,6 +143,103 @@ cards and table
     display: none;
   }
 }
+
+
+
+/***
+TABLE FOR TABLE OF POKER
+**/
+
+td {
+  height: 110px;
+  width: 110px;
+  /*border: solid 1px black;*/
+  color: black;
+}
+
+.grid {
+  position: relative;
+  text-align: center;
+  color: white;
+  z-index: 900000000;
+}
+
+.centered {
+  position: absolute;
+  top: 43.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.seat-name p, .info {
+  color: black;
+  font-weight: bold;
+  font-size: 9pt;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+
+.seat-name {
+  border: solid 5px black;
+  border-radius: 10px;
+  background-color: #666666;
+}
+
+.bet img {
+  width: 50px;
+  height: 50px;
+}
+
+.bet p {
+  color: black;
+  font-weight: bold;
+  font-size: 9pt;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.pot-div {
+
+}
+
+.bet1-div {
+  float: right;
+}
+.bet2-div {
+  float: bottom;
+}
+
+.bet3-div {
+  float: left;
+}
+
+.bet4-div {
+  float: left;
+}
+
+.bet5-div {
+  float: right;
+}
+
+.bet6-div {
+
+}
+
+.bet7-div {
+
+}
+
+.bet8-div {
+  float: left;
+}
+
+.bet9-div {
+  float: right;
+}
+
+
+
 
 
 
