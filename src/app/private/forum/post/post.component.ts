@@ -23,6 +23,14 @@ export class PostComponent implements OnInit {
   comment = '';
   comments: Comment [] = [];
   contentVisibility = false;
+  reseted = false;
+  actionPhase: any = 'SHOW_DOWN';
+  actionNumberPreFlop = -3;
+  actionNumberFlop = -1;
+  actionNumberTurn = -2;
+  actionNumberRiver = -2;
+  actionAnte = false;
+  currentPot = 0;
 
   constructor(private route: ActivatedRoute, private postService: PostService, private router: Router, public snackBar: MatSnackBar, private auth: AuthService) {
   }
@@ -49,7 +57,7 @@ export class PostComponent implements OnInit {
     const ctnt = this.post.content;
     this.post.content = null;
     const commentToAdd = new Comment(this.commentForm.value['comment'], this.auth.currentUser.uid, new Date(), null, 0, this.auth.currentUser.email, this.post);
-    this.postService.saveComment(commentToAdd).subscribe( data => {
+    this.postService.saveComment(commentToAdd).subscribe(data => {
       this.snackBar.open('Comment saved', '', {duration: 2000});
       this.post.content = ctnt;
       this.commentForm.reset();
@@ -57,6 +65,7 @@ export class PostComponent implements OnInit {
       this.loadingPostDetail = false;
     });
   }
+
   getCommentaries(id: number) {
     this.loadingPostDetail = true;
     this.postService.getCommentaries(id).subscribe(data => {
@@ -76,13 +85,14 @@ export class PostComponent implements OnInit {
       });
     });
   }
+
   getSmallBlindNumber(number: number) {
 
     const lastSeat = this.game.seats.length - 1;
     if (number < this.game.seats[lastSeat].number) {
 
       return number + 1;
-    }else {
+    } else {
 
       return 1;
     }
@@ -90,9 +100,9 @@ export class PostComponent implements OnInit {
 
   getBigBlindNumber(small: number) {
     const lastSeat = this.game.seats.length - 1;
-    if (small < this.game.seats[lastSeat].number - 1 ) {
+    if (small < this.game.seats[lastSeat].number - 1) {
       return small + 1;
-    }else {
+    } else {
 
       return 1;
     }
@@ -100,14 +110,15 @@ export class PostComponent implements OnInit {
 
   getIndex(seatNumber: number) {
     let index = 0;
-    for(let i = 0; i < this.game.seats.length; i++) {
-      if (this.game.seats[i].number === seatNumber){
+    for (let i = 0; i < this.game.seats.length; i++) {
+      if (this.game.seats[i].number === seatNumber) {
         index = i;
         break;
       }
     }
     return index;
   }
+
   edit() {
     this.router.navigate(['../' + this.id + '/edit'], {relativeTo: this.route});
   }
@@ -124,7 +135,7 @@ export class PostComponent implements OnInit {
   deleteComment(commentToDelete: Comment) {
     this.postService.deleteCommentary(commentToDelete).subscribe(data => {
       let index = 0;
-      this.comments.forEach( c => {
+      this.comments.forEach(c => {
         if (c === commentToDelete) {
           this.comments.slice(index, 1);
           this.snackBar.open('Comment deleted', '', {duration: 2000});
@@ -150,8 +161,259 @@ export class PostComponent implements OnInit {
     }
   }
 
+  isColletor(username: string): boolean {
+    let bool = false;
+    this.game.showDown.forEach(action => {
+      if (action.userName === username && action.actionType === 'COLLECT') {
+        bool = true;
+      }
+    });
+    return bool;
+  }
+
+  getCollectedAmount(username: string) {
+    let amount = 0;
+    this.game.showDown.forEach(action => {
+      if (action.userName === username && action.actionType === 'COLLECT') {
+        amount = action.amount;
+      }
+    });
+    return amount;
+  }
+
   showContent() {
     this.contentVisibility = !this.contentVisibility;
   }
 
+  reset() {
+    if (this.reseted === false) {
+      this.actionPhase = 'PREFLOP';
+      this.reseted = true;
+    } else if (this.actionNumberPreFlop > -3) {
+      this.reseted = true;
+      this.currentPot = 0;
+      this.actionNumberPreFlop = -3;
+    }
+  }
+
+  play() {
+    if (this.actionPhase === 'PREFLOP' && this.reseted === true) {
+      if (this.actionNumberPreFlop === -3) {
+        this.actionAnte = true;
+        this.currentPot = this.game.seats.length * this.game.ante;
+      } else {
+        this.actionAnte = false;
+      }
+    }
+    this.setActionPhase();
+  }
+
+  setActionPhase() {
+    if (this.actionPhase === 'PREFLOP') {
+      this.actionNumberPreFlop++;
+    }
+
+    if (this.actionPhase === 'FLOP') {
+      this.actionNumberFlop++;
+      if (this.game.flopActions != null) {
+        if (this.actionNumberFlop >= this.game.flopActions.length) {
+          this.actionPhase = 'TURN';
+          this.actionNumberPreFlop = -10;
+          this.actionNumberFlop = -10;
+        }
+      } else {
+        this.actionPhase = 'SHOW_DOWN';
+        this.actionNumberPreFlop = -3;
+        this.actionNumberFlop = -1;
+        this.actionNumberTurn = -2;
+        this.actionNumberRiver = -2;
+      }
+    }
+
+    if (this.actionPhase === 'TURN') {
+      this.actionNumberTurn++;
+      if (this.game.turnActions != null) {
+        if (this.actionNumberTurn >= this.game.turnActions.length) {
+          this.actionPhase = 'RIVER';
+          this.actionNumberPreFlop = -10;
+          this.actionNumberFlop = -10;
+          this.actionNumberTurn = -10;
+        }
+      } else {
+        this.actionPhase = 'SHOW_DOWN';
+        this.actionNumberPreFlop = -3;
+        this.actionNumberFlop = -1;
+        this.actionNumberTurn = -2;
+        this.actionNumberRiver = -2;
+      }
+    }
+
+    if (this.actionPhase === 'RIVER') {
+      this.actionNumberRiver++;
+      if (this.game.riverActions != null) {
+        if (this.actionNumberRiver === this.game.riverActions.length) {
+          this.actionPhase = 'SHOW_DOWN';
+          this.actionNumberPreFlop = -3;
+          this.actionNumberFlop = -1;
+          this.actionNumberTurn = -2;
+          this.actionNumberRiver = -2;
+        }
+      } else {
+        this.actionPhase = 'SHOW_DOWN';
+        this.actionNumberPreFlop = -3;
+        this.actionNumberFlop = -1;
+        this.actionNumberTurn = -2;
+        this.actionNumberRiver = -2;
+      }
+    }
+
+    if (this.actionNumberPreFlop >= 0) {
+      if (this.actionNumberPreFlop < this.game.preFlopActions.length) {
+        this.actionPhase = 'PREFLOP';
+      } else if ((this.actionNumberPreFlop >= this.game.preFlopActions.length && this.actionNumberPreFlop < (this.game.flopActions.length + this.game.preFlopActions.length))) {
+        this.actionPhase = 'FLOP';
+        this.actionNumberPreFlop = -10;
+      }
+    }
+  }
+
+  seatMatchWithActionNumber(username: string): boolean {
+    let match = false;
+    switch (this.actionPhase) {
+      case 'PREFLOP':
+        if (this.game.preFlopActions[this.actionNumberPreFlop].userName === username) {
+          match = true;
+        } else {
+          for (let x = 0; x < this.actionNumberPreFlop + 1; x++) {
+            if (this.game.preFlopActions[x].userName === username) {
+              match = true;
+            }
+          }
+        }
+        break;
+      case 'FLOP':
+        if (this.game.flopActions != null) {
+          if (this.game.flopActions[this.actionNumberFlop].userName === username) {
+            match = true;
+          } else {
+            for (let x = 0; x < this.actionNumberFlop + 1; x++) {
+              if (this.game.flopActions[x].userName === username) {
+                match = true;
+              }
+            }
+          }
+        }
+        break;
+      case 'TURN':
+        if (this.game.turnActions != null) {
+          if (this.game.turnActions[this.actionNumberTurn].userName === username) {
+            match = true;
+          } else {
+            for (let x = 0; x < this.actionNumberTurn + 1; x++) {
+              if (this.game.turnActions[x].userName === username) {
+                match = true;
+              }
+            }
+          }
+        }
+        break;
+      case 'RIVER':
+        if (this.game.riverActions != null) {
+          if (this.game.riverActions[this.actionNumberRiver].userName === username) {
+            match = true;
+          } else {
+            for (let x = 0; x < this.actionNumberRiver + 1; x++) {
+              if (this.game.riverActions[x].userName === username) {
+                match = true;
+              }
+            }
+          }
+        }
+        break;
+      default:
+        match = false;
+        break;
+    }
+    return match;
+  }
+
+  getAmount(username: string): number {
+    let match = 0;
+    switch (this.actionPhase) {
+      case 'PREFLOP':
+        for (let x = 0; x < this.actionNumberPreFlop + 1; x++) {
+          if (this.game.preFlopActions[x].userName === username) {
+            match = this.game.preFlopActions[x].amount;
+          }
+        }
+        break;
+      case 'FLOP':
+        for (let k = 0; k < this.actionNumberFlop + 1; k++) {
+          if (this.game.flopActions[k].userName === username) {
+            match = this.game.flopActions[k].amount;
+          }
+        }
+        break;
+      case 'TURN':
+        for (let x = 0; x < this.actionNumberTurn + 1; x++) {
+          if (this.game.turnActions[x].userName === username) {
+            match = this.game.turnActions[x].amount;
+          }
+        }
+        break;
+      case 'RIVER':
+        for (let x = 0; x < this.actionNumberRiver + 1; x++) {
+          if (this.game.riverActions[x].userName === username) {
+            match = this.game.riverActions[x].amount;
+          }
+        }
+        break;
+      default:
+        match = 0;
+        break;
+    }
+    return match;
+  }
+
+  getActionType(username: string): string {
+    let match = '';
+    switch (this.actionPhase) {
+      case 'PREFLOP':
+        for (let x = 0; x < this.actionNumberPreFlop + 1; x++) {
+          if (this.game.preFlopActions[x].userName === username) {
+            match = this.game.preFlopActions[x].actionType;
+          }
+        }
+        break;
+      case 'FLOP':
+        for (let x = 0; x < this.actionNumberFlop + 1; x++) {
+          if (this.game.flopActions[x].userName === username) {
+            match = this.game.flopActions[x].actionType;
+          }
+        }
+        break;
+      case 'TURN':
+        for (let x = 0; x < this.actionNumberTurn + 1; x++) {
+          if (this.game.turnActions[x].userName === username) {
+            match = this.game.turnActions[x].actionType;
+          }
+        }
+        break;
+      case 'RIVER':
+        for (let x = 0; x < this.actionNumberRiver + 1; x++) {
+          if (this.game.riverActions[x].userName === username) {
+            match = this.game.riverActions[x].actionType;
+          }
+        }
+        break;
+      default:
+        match = '';
+        break;
+    }
+    return match;
+  }
+
+  /*userIsFolded(username: string) {
+
+  }*/
 }

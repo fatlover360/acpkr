@@ -1,12 +1,10 @@
 export class Action {
-  betAmount: number;
+  amount: number;
   userName: string;
   actionType: string;
-
-  constructor(betAmount: number, userName: string, actionType: string) {
-    this.betAmount = betAmount;
+  constructor(amount: number, userName: string, actionType: string) {
+    this.amount = amount;
     this.userName = userName;
     this.actionType = actionType;
   }
-
 }

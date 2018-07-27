@@ -78,8 +78,8 @@ cards and table
 
   .table {
     background-color: green;
-    height: 40%;
-    width: 76%;
+    height: 40.5%;
+    width: 76.5%;
     border-radius: 50%;
     border: 1em solid black;
   }
@@ -91,6 +91,10 @@ cards and table
     left: 32.5%;
   }
 
+  .fold {
+    opacity: 0.20 !important;
+  }
+
   .card-small {
     border: .2em solid black;
     border-radius: 10%;
@@ -98,6 +102,10 @@ cards and table
     width: 41px; /*70% of height*/
     background-color: white;
     display: inline-block;
+  }
+
+  .contentGrid {
+    background-color: darkgray;
   }
 
   .card-text {
@@ -150,18 +158,25 @@ cards and table
 TABLE FOR TABLE OF POKER
 **/
 
+.seats, .seat-name, i {
+  cursor: pointer;
+}
+
+
+
 td {
   height: 110px;
   width: 110px;
   /*border: solid 1px black;*/
   color: black;
+  padding: 10px 0px 10px 0px;
 }
 
 .grid {
   position: relative;
   text-align: center;
   color: white;
-  z-index: 900000000;
+  z-index: 900;
 }
 
 .centered {
@@ -189,9 +204,19 @@ td {
 .bet img {
   width: 50px;
   height: 50px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .bet p {
+  color: black;
+  font-weight: bold;
+  font-size: 9pt;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.win p {
   color: black;
   font-weight: bold;
   font-size: 9pt;
