@@ -7,6 +7,7 @@ import {Post} from '../../../model/post.model';
 import {Game} from '../../../model/game.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Comment} from '../../../model/comment.model';
+import {Seats} from '../../../model/seats.model';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class PostComponent implements OnInit {
   actionNumberRiver = -2;
   actionAnte = false;
   currentPot = 0;
+  seatsCurrentAmount: Seats[];
 
   constructor(private route: ActivatedRoute, private postService: PostService, private router: Router, public snackBar: MatSnackBar, private auth: AuthService) {
   }
@@ -81,6 +83,8 @@ export class PostComponent implements OnInit {
       this.postService.getGame(id).subscribe(game => {
         console.log(game);
         this.game = game;
+        this.seatsCurrentAmount = game.seats;
+        this.seatsCurrentAmount.forEach( seat => seat.chips = 0);
         this.getCommentaries(id);
       });
     });
@@ -346,6 +350,7 @@ export class PostComponent implements OnInit {
             match = this.game.preFlopActions[x].amount;
           }
         }
+
         break;
       case 'FLOP':
         for (let k = 0; k < this.actionNumberFlop + 1; k++) {
