@@ -84,7 +84,7 @@ export class PostComponent implements OnInit {
         console.log(game);
         this.game = game;
         this.seatsCurrentAmount = game.seats;
-        this.seatsCurrentAmount.forEach( seat => seat.chips = 0);
+        this.seatsCurrentAmount.forEach(seat => seat.chips = 0);
         this.getCommentaries(id);
       });
     });

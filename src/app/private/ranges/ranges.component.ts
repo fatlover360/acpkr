@@ -49,6 +49,8 @@ export class RangesComponent implements OnInit {
           this.gametypeSelected = 'BB Ranges';
         } else if (url[0].path === 'ranges_static') {
           this.gametypeSelected = 'Static Ranges';
+        } else if (url[0].path === 'ranges_cash') {
+          this.gametypeSelected = 'Cash Ranges';
         } else {
           this.gametypeSelected = 'Ranges';
         }
@@ -221,10 +223,10 @@ export class RangesComponent implements OnInit {
     if (this.blindSelected !== null && this.positionSelected !== null && this.typeSelected !== null) {
       this.loading = true;
       this.rangesService.getByTypeAndPosition(this.typeSelected, this.positionSelected, this.blindSelected.value, this.gametypeSelected)
-        .subscribe( data => {
+        .subscribe(data => {
           this.rangesInMemory = data;
           this.loading = false;
-      });
+        });
     }
   }
 
@@ -235,10 +237,10 @@ export class RangesComponent implements OnInit {
 
 
   delete() {
-    this.rangesService.delete(this.typeSelected).subscribe( t => {
+    this.rangesService.delete(this.typeSelected).subscribe(t => {
       this.clearArray();
       let index = 0;
-      this.types.forEach( i => {
+      this.types.forEach(i => {
         if (i === this.typeSelected) {
           this.types.splice(index, 1);
         }

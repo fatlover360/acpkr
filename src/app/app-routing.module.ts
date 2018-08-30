@@ -10,9 +10,9 @@ import {CashComponent} from './private/cash/cash.component';
 import {AdminComponent} from './private/admin/admin.component';
 import {ForumComponent} from './private/forum/forum.component';
 import {PostComponent} from './private/forum/post/post.component';
-import {PostEditComponent} from "./private/forum/post-edit/post-edit.component";
-import {PostListComponent} from "./private/forum/post-list/post-list.component";
-import {VideosComponent} from "./private/videos/videos.component";
+import {PostEditComponent} from './private/forum/post-edit/post-edit.component';
+import {PostListComponent} from './private/forum/post-list/post-list.component';
+import {VideosComponent} from './private/videos/videos.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -20,6 +20,7 @@ const appRoutes: Routes = [
   {path: 'users', component: UsersComponent},
   {path: 'videos', component: VideosComponent},
   {path: 'ranges', component: RangesComponent},
+  {path: 'ranges_cash', component: RangesComponent},
   {path: 'ranges_static', component: RangesComponent},
   {path: 'ranges_bb', component: RangesComponent},
   {path: 'profile', component: ProfileComponent},
