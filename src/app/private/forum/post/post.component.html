@@ -1,4 +1,11 @@
-<!-- Page Content -->
+<!--mat-spinner *ngIf="loadingPostDetail"></mat-spinner>-->
+
+<div class="container">
+  <iframe src="https://www.weaktight.com/e/5b8b27ccd39043a6628b4678" width="700" height="400" frameBorder="0"></iframe>
+</div>
+
+<!--
+<!--
 <mat-spinner *ngIf="loadingPostDetail"></mat-spinner>
 
 
@@ -8,809 +15,818 @@
 
   <!-- Preview Image -->
 
-  <!-- Post Content Column -->
-  <div class="col-lg-12">
+<!-- Post Content Column
+<div class="col-lg-12">
 
-    <!-- Title -->
-    <h1 class="mt-4">{{post.title}}</h1>
+  <!-- Title
+  <h1 class="mt-4">{{post.title}}</h1>
 
-    <!-- Author -->
-    <p class="lead">
-      by
-      <a href="#">{{post.username}}</a>
-    </p>
+  <!-- Author
+  <p class="lead">
+    by
+    <a href="#">{{post.username}}</a>
+  </p>
 
-    <hr>
+  <hr>
 
-    <!-- Date/Time -->
-    <p>{{post.date | date: 'medium'}}</p>
+  <!-- Date/Time
+  <p>{{post.date | date: 'medium'}}</p>
 
-    <hr>
-    <div class="contentGrid">
-      <table class="grid" style="width: 100%">
-        <tr class="row1">
-          <td></td>
-          <td></td>
-          <td class="table-seat-one">
-            <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(1)].user)">
-              <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(1)].user)}}</span></p>
-            </div>
-            <div class="buttons">
-              <span *ngIf="game.seats[getIndex(1)].button" class="chip seatBU">BU</span>
-              <span *ngIf="game.seats[getIndex(1)].small" class="chip small seatBU">Small</span>
-              <span *ngIf="game.seats[getIndex(1)].big" class="chip big seatBU">Big</span>
-            </div>
-            <div class="seats st1">
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(1)].user"></div>
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(1)].user"></div>
-
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(1)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(1)].user)">
-                <p class="card-text ">{{game.seats[getIndex(1)].cardOne.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(1)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(1)].user)">
-                <p class="card-text ">{{game.seats[getIndex(1)].cardTwo.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(1)].cardOne === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(1)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-            </div>
-            <div class="seat-name">
-              <p>{{game.seats[getIndex(1)].user}}</p>
-              <p>$ {{game.seats[getIndex(1)].chips}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td class="table-seat-two">
-            <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(2)].user)">
-              <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(2)].user)}}</span></p>
-            </div>
-            <div class="buttons">
-              <span *ngIf="game.seats[getIndex(2)].button" class="chip seatBU">BU</span>
-              <span *ngIf="game.seats[getIndex(2)].small" class="chip small seatBU">Small</span>
-              <span *ngIf="game.seats[getIndex(2)].big" class="chip big seatBU">Big</span>
-            </div>
-            <div class="seats st2">
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(2)].user"></div>
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(2)].user"></div>
-
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(2)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(2)].user)">
-                <p class="card-text ">{{game.seats[getIndex(2)].cardOne.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(2)].cardTwo !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(2)].user)">
-                <p class="card-text ">{{game.seats[getIndex(2)].cardTwo.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 's'">&spades;</p>
-              </div>
-
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(2)].cardOne === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(2)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-            </div>
-            <div class="seat-name">
-              <p>{{game.seats[getIndex(2)].user}}</p>
-              <p>$ {{game.seats[getIndex(2)].chips}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td class="table-seat-three">
-            <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(3)].user)">
-              <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(3)].user)}}</span></p>
-            </div>
-            <div class="buttons">
-              <span *ngIf="game.seats[getIndex(3)].button" class="chip seatBU">BU</span>
-              <span *ngIf="game.seats[getIndex(3)].small" class="chip small seatBU">Small</span>
-              <span *ngIf="game.seats[getIndex(3)].big" class="chip big seatBU">Big</span>
-            </div>
-            <div class="seats st3">
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(3)].user"></div>
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(3)].user"></div>
-
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(3)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(3)].user)">
-                <p class="card-text ">{{game.seats[getIndex(3)].cardOne.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(3)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(3)].user)">
-                <p class="card-text ">{{game.seats[getIndex(3)].cardTwo.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(3)].cardOne === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(3)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-            </div>
-            <div class="seat-name">
-              <p>{{game.seats[getIndex(3)].user}}</p>
-              <p>$ {{game.seats[getIndex(3)].chips}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class="row2">
-          <td></td>
-          <td></td>
-          <td class="bet">
-            <div class="bet1-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ 1233</p>
-            </div>
-            <div class="bet1-div" *ngIf="actionAnte">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.ante}}</p>
-            </div>
-            <div class="bet1-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(1)].small">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.smallBlind}}</p>
-            </div>
-            <div class="bet1-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(1)].big">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.bigBlind}}</p>
-            </div>
-            <div class="bet1-div"
-                 *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(1)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(1)].user))
-                  || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(1)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(1)].user))">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{getAmount(game.seats[getIndex(1)].user)}}</p>
-              <p>{{getActionType(game.seats[getIndex(1)].user)}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td class="bet">
-            <div class="bet2-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ 1233</p>
-            </div>
-            <div class="bet2-div" *ngIf="actionAnte">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.ante}}</p>
-            </div>
-            <div class="bet2-div" *ngIf="actionNumberPreFlop >= -1 &&  actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(2)].small">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.smallBlind}}</p>
-            </div>
-            <div class="bet2-div" *ngIf="actionNumberPreFlop >= -1 &&  actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(2)].big">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.bigBlind}}</p>
-            </div>
-            <div class="bet2-div"
-                 *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(2)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(2)].user))
-                  || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(2)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(2)].user))">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{getAmount(game.seats[getIndex(2)].user)}}</p>
-              <p>{{getActionType(game.seats[getIndex(2)].user)}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td class="bet">
-            <div class="bet3-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ 1233</p>
-            </div>
-            <div class="bet3-div" *ngIf="actionAnte">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.ante}}</p>
-            </div>
-            <div class="bet3-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(3)].small">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.smallBlind}}</p>
-            </div>
-            <div class="bet3-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(3)].big">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.bigBlind}}</p>
-            </div>
-            <div class="bet3-div"
-                 *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(3)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(3)].user))
-                  || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(3)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(3)].user))">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{getAmount(game.seats[getIndex(3)].user)}}</p>
-              <p>{{getActionType(game.seats[getIndex(3)].user)}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class="row3">
-          <td class="table-seat-nine">
-            <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(9)].user)">
-              <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(9)].user)}}</span></p>
-            </div>
-            <div class="buttons">
-              <span *ngIf="game.seats[getIndex(9)].button" class="chip seatBU">BU</span>
-              <span *ngIf="game.seats[getIndex(9)].small" class="chip small seatBU">Small</span>
-              <span *ngIf="game.seats[getIndex(9)].big" class="chip big seatBU">Big</span>
-            </div>
-            <div class="seats st9">
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(9)].user"></div>
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(9)].user"></div>
-
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(9)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(9)].user)">
-                <p class="card-text ">{{game.seats[getIndex(9)].cardOne.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(9)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(9)].user)">
-                <p class="card-text ">{{game.seats[getIndex(9)].cardTwo.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(9)].cardOne === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(9)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-            </div>
-            <div class="seat-name">
-              <p>{{game.seats[getIndex(9)].user}}</p>
-              <p>$ {{game.seats[getIndex(9)].chips}}</p>
-            </div>
-          </td>
-          <td class="bet">
-            <div class="bet9-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ 1233</p>
-            </div>
-            <div class="bet9-div" *ngIf="actionAnte">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.ante}}</p>
-            </div>
-            <div class="bet9-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(9)].small">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.smallBlind}}</p>
-            </div>
-            <div class="bet9-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(9)].big">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.bigBlind}}</p>
-            </div>
-            <div class="bet9-div"
-                 *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(9)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(9)].user))
-                  || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(9)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(9)].user))">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{getAmount(game.seats[getIndex(9)].user)}}</p>
-              <p>{{getActionType(game.seats[getIndex(9)].user)}}</p>
-            </div>
-          </td>
-          <td class="table-board">
-            <div class="card-small flop" *ngIf="game.flop !== null && actionPhase != 'PREFLOP'">
-              <p class="card-text">{{game.flop.split(' ')[0].substring(0,1)}}</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
-            </div>
-          </td>
-          <td class="table-board">
-            <div class="card-small flop" *ngIf="game.flop !== null && actionPhase != 'PREFLOP'">
-              <p class="card-text ">{{game.flop.split(' ')[1].substring(0,1)}}</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'c'">&clubs;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'h'">&hearts;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'd'">&diams;</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 's'">&spades;</p>
-            </div>
-          </td>
-          <td class="table-board">
-            <div class="card-small flop" *ngIf="game.flop !== null && actionPhase != 'PREFLOP'">
-              <p class="card-text ">{{game.flop.split(' ')[2].substring(0,1)}}</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'c'">&clubs;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'h'">&hearts;</p>
-              <p class="card-img red" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'd'">&diams;</p>
-              <p class="card-img black" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 's'">&spades;</p>
-            </div>
-          </td>
-          <td class="table-board">
-            <div class="card-small turn" *ngIf="game.turn !== null && actionPhase != 'PREFLOP' && actionPhase != 'FLOP'">
-              <p class="card-text ">{{game.turn.split(' ')[0].substring(0,1)}}</p>
-              <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
-              <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
-              <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
-              <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
-            </div>
-          </td>
-          <td class="table-board">
-            <div class="card-small river" *ngIf="game.river !== null && actionPhase != 'PREFLOP' && actionPhase != 'FLOP' && actionPhase != 'TURN'">
-              <p class="card-text ">{{game.river.split(' ')[0].substring(0,1)}}</p>
-              <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
-              <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
-              <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
-              <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
-            </div>
-          </td>
-          <td class="bet">
-            <div class="bet4-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ 1233</p>
-            </div>
-            <div class="bet4-div" *ngIf="actionAnte">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.ante}}</p>
-            </div>
-            <div class="bet4-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(4)].small">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.smallBlind}}</p>
-            </div>
-            <div class="bet4-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(4)].big">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.bigBlind}}</p>
-            </div>
-            <div class="bet4-div"
-                 *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(4)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(4)].user))
-                  || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(4)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(4)].user))">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{getAmount(game.seats[getIndex(4)].user)}}</p>
-              <p>{{getActionType(game.seats[getIndex(4)].user)}}</p>
-            </div>
-          </td>
-          <td class="table-seat-four">
-            <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(4)].user)">
-              <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(4)].user)}}</span></p>
-            </div>
-            <div class="buttons">
-              <span *ngIf="game.seats[getIndex(4)].button" class="chip seatBU">BU</span>
-              <span *ngIf="game.seats[getIndex(4)].small" class="chip small seatBU">Small</span>
-              <span *ngIf="game.seats[getIndex(4)].big" class="chip big seatBU">Big</span>
-            </div>
-            <div class="seats st4">
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(4)].user"></div>
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(4)].user"></div>
-
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(4)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(4)].user)">
-                <p class="card-text ">{{game.seats[getIndex(4)].cardOne.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(4)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(4)].user)">
-                <p class="card-text ">{{game.seats[getIndex(4)].cardTwo.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(4)].cardOne === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(4)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-            </div>
-            <div class="seat-name">
-              <p>{{game.seats[getIndex(4)].user}}</p>
-              <p>$ {{game.seats[getIndex(4)].chips}}</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="row4">
-          <td></td>
-          <td></td>
-          <td class="bet">
-            <div class="bet8-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ 1233</p>
-            </div>
-            <div class="bet8-div" *ngIf="actionAnte">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.ante}}</p>
-            </div>
-            <div class="bet8-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(8)].small">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.smallBlind}}</p>
-            </div>
-            <div class="bet8-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(8)].big">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.bigBlind}}</p>
-            </div>
-            <div class="bet8-div"
-                 *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(8)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(8)].user))
-                  || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(8)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(8)].user))">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{getAmount(game.seats[getIndex(8)].user)}}</p>
-              <p>{{getActionType(game.seats[getIndex(8)].user)}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td class="pot bet">
-            <div class="pot-div" *ngIf="actionPhase == 'SHOW_DOWN' && !reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.finalPot}}</p>
-            </div>
-            <div class="pot-div" *ngIf="reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{currentPot}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td class="bet">
-            <div class="bet5-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ 1233</p>
-            </div>
-            <div class="bet5-div" *ngIf="actionAnte">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.ante}}</p>
-            </div>
-            <div class="bet5-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(5)].small">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.smallBlind}}</p>
-            </div>
-            <div class="bet5-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(5)].big">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.bigBlind}}</p>
-            </div>
-            <div class="bet5-div"
-                 *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(5)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(5)].user))
-                  || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(5)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(5)].user))">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{getAmount(game.seats[getIndex(5)].user)}}</p>
-              <p>{{getActionType(game.seats[getIndex(5)].user)}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class="row5">
-          <td class="table-seat-eight">
-            <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(8)].user)">
-              <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(8)].user)}}</span></p>
-            </div>
-            <div class="buttons">
-              <span *ngIf="game.seats[getIndex(8)].button" class="chip seatBU">BU</span>
-              <span *ngIf="game.seats[getIndex(8)].small" class="chip small seatBU">Small</span>
-              <span *ngIf="game.seats[getIndex(8)].big" class="chip big seatBU">Big</span>
-            </div>
-            <div class="seats st8">
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(8)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(8)].user)">
-                <p class="card-text ">{{game.seats[getIndex(8)].cardOne.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(8)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(8)].user)">
-                <p class="card-text ">{{game.seats[getIndex(8)].cardTwo.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(8)].user"></div>
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(8)].user"></div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(8)].cardOne === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(8)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-            </div>
-            <div class="seat-name">
-              <p>{{game.seats[getIndex(8)].user}}</p>
-              <p>$ {{game.seats[getIndex(8)].chips}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td></td>
-          <td class="bet">
-            <div class="bet7-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ 1233</p>
-            </div>
-            <div class="bet7-div" *ngIf="actionAnte">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.ante}}</p>
-            </div>
-            <div class="bet7-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(7)].small">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.smallBlind}}</p>
-            </div>
-            <div class="bet7-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(7)].big">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.bigBlind}}</p>
-            </div>
-            <div class="bet7-div"
-                 *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(7)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(7)].user))
-                  || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(7)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(7)].user))">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{getAmount(game.seats[getIndex(7)].user)}}</p>
-              <p>{{getActionType(game.seats[getIndex(7)].user)}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td class="bet">
-            <div class="bet6-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ 1233</p>
-            </div>
-            <div class="bet6-div" *ngIf="actionAnte">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.ante}}</p>
-            </div>
-            <div class="bet6-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(6)].small">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.smallBlind}}</p>
-            </div>
-            <div class="bet6-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(6)].big">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{game.bigBlind}}</p>
-            </div>
-            <div class="bet6-div"
-                 *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(6)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(6)].user))
-                  || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(6)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(6)].user))">
-              <img src="/assets/images/pkr_chips.png">
-              <p>$ {{getAmount(game.seats[getIndex(6)].user)}}</p>
-              <p>{{getActionType(game.seats[getIndex(6)].user)}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td></td>
-          <td class="table-seat-five">
-            <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(5)].user)">
-              <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(5)].user)}}</span></p>
-            </div>
-            <div class="buttons">
-              <span *ngIf="game.seats[getIndex(5)].button" class="chip seatBU">BU</span>
-              <span *ngIf="game.seats[getIndex(5)].small" class="chip small seatBU">Small</span>
-              <span *ngIf="game.seats[getIndex(5)].big" class="chip big seatBU">Big</span>
-            </div>
-            <div class="seats st5">
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(5)].user"></div>
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(5)].user"></div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(5)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(5)].user)">
-                <p class="card-text ">{{game.seats[getIndex(5)].cardOne.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(5)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(5)].user)">
-                <p class="card-text ">{{game.seats[getIndex(5)].cardTwo.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(5)].cardOne === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(5)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-            </div>
-            <div class="seat-name">
-              <p>{{game.seats[getIndex(5)].user}}</p>
-              <p>$ {{game.seats[getIndex(5)].chips}}</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="row6">
-          <td></td>
-          <td></td>
-          <td class="table-seat-seven">
-            <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(7)].user)">
-              <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(7)].user)}}</span></p>
-            </div>
-            <div class="buttons">
-              <span *ngIf="game.seats[getIndex(7)].button" class="chip seatBU">BU</span>
-              <span *ngIf="game.seats[getIndex(7)].small" class="chip small seatBU">Small</span>
-              <span *ngIf="game.seats[getIndex(7)].big" class="chip big seatBU">Big</span>
-            </div>
-            <div class="seats st7">
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(7)].user"></div>
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(7)].user"></div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(7)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(7)].user)">
-                <p class="card-text ">{{game.seats[getIndex(7)].cardOne.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(7)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(7)].user)">
-                <p class="card-text ">{{game.seats[getIndex(7)].cardTwo.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(7)].cardOne === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(7)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
-
-
-              </div>
-            </div>
-            <div class="seat-name">
-              <p>{{game.seats[getIndex(7)].user}}</p>
-              <p>$ {{game.seats[getIndex(7)].chips}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td>
-            <p class="info">Big Blind: $ {{game.bigBlind}}</p>
-            <p class="info">Small Blind: $ {{game.smallBlind}}</p>
-            <p class="info">Ante: $ {{game.ante}}</p>
-          </td>
-          <td></td>
-          <td class="table-seat-six">
-            <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(6)].user)">
-              <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(6)].user)}}</span></p>
-            </div>
-            <div class="buttons">
-              <span *ngIf="game.seats[getIndex(6)].button" class="chip seatBU">BU</span>
-              <span *ngIf="game.seats[getIndex(6)].small" class="chip small seatBU">Small</span>
-              <span *ngIf="game.seats[getIndex(6)].big" class="chip big seatBU">Big</span>
-            </div>
-            <div class="seats st6">
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(6)].user"></div>
-              <div class="card-small null"
-                   *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(6)].user"></div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(6)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(6)].user)">
-                <p class="card-text ">{{game.seats[getIndex(6)].cardOne.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small"
-                   *ngIf="game.seats[getIndex(6)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(6)].user)">
-                <p class="card-text ">{{game.seats[getIndex(6)].cardTwo.substring(0,1)}}</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
-                <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
-                <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 's'">&spades;</p>
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(6)].cardOne === null && actionPhase == 'SHOW_DOWN'">
-
-              </div>
-              <div class="card-small null"
-                   *ngIf="game.seats[getIndex(6)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
-
-              </div>
-            </div>
-            <div class="seat-name">
-              <p>{{game.seats[getIndex(6)].user}}</p>
-              <p>$ {{game.seats[getIndex(6)].chips}}</p>
-            </div>
-          </td>
-          <td></td>
-          <td>
-            <span><i class="material-icons" (click)="reset()">replay</i></span>
-            <span><i class="material-icons" (click)="play()">fast_forward</i></span>
-          </td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="table centered">
-
-
-    </div>
-
-
-    <hr>
-    <!-- Post Content -->
-    <button type="submit" (click)="showContent()" class="btn">{{contentVisibility ? 'Hide text content':
-      'Show text content' }}
-    </button>
-    <ng-template [ngIf]="contentVisibility">
-      <p style="font-size: 10pt" *ngFor="let line of post.content; let i = index;">{{post.content[i]}}</p>
-    </ng-template>
-
-    <!-- Comments Form -->
-
-    <div class="card my-4">
-      <h5 class="card-header">Leave a Comment:</h5>
-      <div class="card-body">
-        <form [formGroup]="commentForm" (ngSubmit)="onCommentSubmit()">
-          <div class="form-group">
-            <textarea class="form-control" formControlName="comment" rows="3"></textarea>
+  <hr>
+  <div class="contentGrid">
+    <table class="grid" style="width: 100%">
+      <tr class="row1">
+        <td></td>
+        <td></td>
+        <td class="table-seat-one">
+          <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(1)].user)">
+            <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(1)].user)}}</span></p>
           </div>
-          <button type="submit" [disabled]="!commentForm.valid" class="btn">Submit</button>
-        </form>
-      </div>
-    </div>
-    <!-- Single Comment -->
+
+          <div class="seats st1 {{userIsFolded(game.seats[getIndex(1)].user)}}">
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(1)].user"></div>
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(1)].user"></div>
+
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(1)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(1)].user)">
+              <p class="card-text ">{{game.seats[getIndex(1)].cardOne.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardOne.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(1)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(1)].user)">
+              <p class="card-text ">{{game.seats[getIndex(1)].cardTwo.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(1)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(1)].cardOne === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(1)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+          </div>
+          <div class="seat-name">
+            <p>{{game.seats[getIndex(1)].user}}</p>
+            <p>$ {{game.seats[getIndex(1)].chips}}</p>
+          </div>
+          <div class="buttons">
+            <span *ngIf="game.seats[getIndex(1)].button" class="chip seatBU">BU</span>
+            <span *ngIf="game.seats[getIndex(1)].small" class="chip small seatBU">SB</span>
+            <span *ngIf="game.seats[getIndex(1)].big" class="chip big seatBU">BB</span>
+          </div>
+        </td>
+        <td></td>
+        <td class="table-seat-two">
+          <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(2)].user)">
+            <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(2)].user)}}</span></p>
+          </div>
+
+          <div class="seats st2 {{userIsFolded(game.seats[getIndex(2)].user)}}">
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(2)].user"></div>
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(2)].user"></div>
+
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(2)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(2)].user)">
+              <p class="card-text ">{{game.seats[getIndex(2)].cardOne.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardOne.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(2)].cardTwo !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(2)].user)">
+              <p class="card-text ">{{game.seats[getIndex(2)].cardTwo.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(2)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+            </div>
+
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(2)].cardOne === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(2)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+          </div>
+          <div class="seat-name">
+            <p>{{game.seats[getIndex(2)].user}}</p>
+            <p>$ {{game.seats[getIndex(2)].chips}}</p>
+          </div>
+          <div class="buttons">
+            <span *ngIf="game.seats[getIndex(2)].button" class="chip seatBU">BU</span>
+            <span *ngIf="game.seats[getIndex(2)].small" class="chip small seatBU">SB</span>
+            <span *ngIf="game.seats[getIndex(2)].big" class="chip big seatBU">BB</span>
+          </div>
+        </td>
+        <td></td>
+        <td class="table-seat-three">
+          <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(3)].user)">
+            <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(3)].user)}}</span></p>
+          </div>
+
+          <div class="seats st3 {{userIsFolded(game.seats[getIndex(3)].user)}}">
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(3)].user"></div>
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(3)].user"></div>
+
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(3)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(3)].user)">
+              <p class="card-text ">{{game.seats[getIndex(3)].cardOne.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardOne.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(3)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(3)].user)">
+              <p class="card-text ">{{game.seats[getIndex(3)].cardTwo.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(3)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(3)].cardOne === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(3)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+          </div>
+          <div class="seat-name">
+            <p>{{game.seats[getIndex(3)].user}}</p>
+            <p>$ {{game.seats[getIndex(3)].chips}}</p>
+          </div>
+          <div class="buttons">
+            <span *ngIf="game.seats[getIndex(3)].button" class="chip seatBU">BU</span>
+            <span *ngIf="game.seats[getIndex(3)].small" class="chip small seatBU">SB</span>
+            <span *ngIf="game.seats[getIndex(3)].big" class="chip big seatBU">BB</span>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="row2">
+        <td></td>
+        <td></td>
+        <td class="bet {{getActionType(game.seats[getIndex(1)].user)}}">
+          <div class="bet1-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ 1233</p>
+          </div>
+          <div class="bet1-div" *ngIf="actionAnte && game.ante!=null">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.ante}}</p>
+          </div>
+          <div class="bet1-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(1)].small">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.smallBlind}}</p>
+          </div>
+          <div class="bet1-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(1)].big">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.bigBlind}}</p>
+          </div>
+          <div class="bet1-div"
+               *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(1)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(1)].user))
+                || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(1)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(1)].user))">
+            <img class="bet{{getActionType(game.seats[getIndex(1)].user)}}"  src="/assets/images/pkr_chips.png">
+            <p class="bet{{getActionType(game.seats[getIndex(1)].user)}}" >$ {{getAmount(game.seats[getIndex(1)].user)}}</p>
+            <p>{{getActionType(game.seats[getIndex(1)].user)}}</p>
+          </div>
+        </td>
+        <td></td>
+        <td class="bet {{getActionType(game.seats[getIndex(2)].user)}}">
+          <div class="bet2-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ 1233</p>
+          </div>
+          <div class="bet2-div" *ngIf="actionAnte && game.ante!=null">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.ante}}</p>
+          </div>
+          <div class="bet2-div" *ngIf="actionNumberPreFlop >= -1 &&  actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(2)].small">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.smallBlind}}</p>
+          </div>
+          <div class="bet2-div" *ngIf="actionNumberPreFlop >= -1 &&  actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(2)].big">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.bigBlind}}</p>
+          </div>
+          <div class="bet2-div"
+               *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(2)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(2)].user))
+                || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(2)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(2)].user))">
+            <img class="bet{{getActionType(game.seats[getIndex(2)].user)}}"  src="/assets/images/pkr_chips.png">
+            <p class="bet{{getActionType(game.seats[getIndex(2)].user)}}" >$ {{getAmount(game.seats[getIndex(2)].user)}}</p>
+            <p>{{getActionType(game.seats[getIndex(2)].user)}}</p>
+          </div>
+        </td>
+        <td></td>
+        <td class="bet {{getActionType(game.seats[getIndex(3)].user)}}">
+          <div class="bet3-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ 1233</p>
+          </div>
+          <div class="bet3-div" *ngIf="actionAnte && game.ante!=null">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.ante}}</p>
+          </div>
+          <div class="bet3-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(3)].small">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.smallBlind}}</p>
+          </div>
+          <div class="bet3-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(3)].big">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.bigBlind}}</p>
+          </div>
+          <div class="bet3-div"
+               *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(3)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(3)].user))
+                || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(3)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(3)].user))">
+            <img class="bet{{getActionType(game.seats[getIndex(3)].user)}}"  src="/assets/images/pkr_chips.png">
+            <p class="bet{{getActionType(game.seats[getIndex(3)].user)}}" >$ {{getAmount(game.seats[getIndex(3)].user)}}</p>
+            <p>{{getActionType(game.seats[getIndex(3)].user)}}</p>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="row3">
+        <td class="table-seat-nine">
+          <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(9)].user)">
+            <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(9)].user)}}</span></p>
+          </div>
+
+          <div class="seats st9 {{userIsFolded(game.seats[getIndex(9)].user)}}">
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(9)].user"></div>
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(9)].user"></div>
+
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(9)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(9)].user)">
+              <p class="card-text ">{{game.seats[getIndex(9)].cardOne.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardOne.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(9)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(9)].user)">
+              <p class="card-text ">{{game.seats[getIndex(9)].cardTwo.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(9)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(9)].cardOne === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(9)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+          </div>
+          <div class="seat-name">
+            <p>{{game.seats[getIndex(9)].user}}</p>
+            <p>$ {{game.seats[getIndex(9)].chips}}</p>
+          </div>
+          <div class="buttons">
+            <span *ngIf="game.seats[getIndex(9)].button" class="chip seatBU">BU</span>
+            <span *ngIf="game.seats[getIndex(9)].small" class="chip small seatBU">SB</span>
+            <span *ngIf="game.seats[getIndex(9)].big" class="chip big seatBU">BB</span>
+          </div>
+        </td>
+        <td class="bet {{getActionType(game.seats[getIndex(9)].user)}}">
+          <div class="bet9-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ 1233</p>
+          </div>
+          <div class="bet9-div" *ngIf="actionAnte && game.ante!=null">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.ante}}</p>
+          </div>
+          <div class="bet9-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(9)].small">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.smallBlind}}</p>
+          </div>
+          <div class="bet9-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(9)].big">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.bigBlind}}</p>
+          </div>
+          <div class="bet9-div"
+               *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(9)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(9)].user))
+                || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(9)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(9)].user))">
+            <img class="bet{{getActionType(game.seats[getIndex(9)].user)}}" src="/assets/images/pkr_chips.png">
+            <p class="bet{{getActionType(game.seats[getIndex(9)].user)}}" >$ {{getAmount(game.seats[getIndex(9)].user)}}</p>
+            <p>{{getActionType(game.seats[getIndex(9)].user)}}</p>
+          </div>
+        </td>
+        <td class="table-board">
+          <div class="card-small flop" *ngIf="game.flop !== null && actionPhase != 'PREFLOP'">
+            <p class="card-text">{{game.flop.split(' ')[0].substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
+          </div>
+        </td>
+        <td class="table-board">
+          <div class="card-small flop" *ngIf="game.flop !== null && actionPhase != 'PREFLOP'">
+            <p class="card-text ">{{game.flop.split(' ')[1].substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[1].substring(1,2)=== 's'">&spades;</p>
+          </div>
+        </td>
+        <td class="table-board">
+          <div class="card-small flop" *ngIf="game.flop !== null && actionPhase != 'PREFLOP'">
+            <p class="card-text ">{{game.flop.split(' ')[2].substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.flop.split(' ')[2].substring(1,2)=== 's'">&spades;</p>
+          </div>
+        </td>
+        <td class="table-board">
+          <div class="card-small turn" *ngIf="game.turn !== null && actionPhase != 'PREFLOP' && actionPhase != 'FLOP'">
+            <p class="card-text ">{{game.turn.split(' ')[0].substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.turn.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
+          </div>
+        </td>
+        <td class="table-board">
+          <div class="card-small river" *ngIf="game.river !== null && actionPhase != 'PREFLOP' && actionPhase != 'FLOP' && actionPhase != 'TURN'">
+            <p class="card-text ">{{game.river.split(' ')[0].substring(0,1)}}</p>
+            <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'c'">&clubs;</p>
+            <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'h'">&hearts;</p>
+            <p class="card-img red" *ngIf="game.river.split(' ')[0].substring(1,2)=== 'd'">&diams;</p>
+            <p class="card-img black" *ngIf="game.river.split(' ')[0].substring(1,2)=== 's'">&spades;</p>
+          </div>
+        </td>
+        <td class="bet {{getActionType(game.seats[getIndex(4)].user)}}">
+          <div class="bet4-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ 1233</p>
+          </div>
+          <div class="bet4-div" *ngIf="actionAnte && game.ante!=null">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.ante}}</p>
+          </div>
+          <div class="bet4-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(4)].small">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.smallBlind}}</p>
+          </div>
+          <div class="bet4-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(4)].big">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.bigBlind}}</p>
+          </div>
+          <div class="bet4-div"
+               *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(4)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(4)].user))
+                || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(4)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(4)].user))">
+            <img class="bet{{getActionType(game.seats[getIndex(4)].user)}}"  src="/assets/images/pkr_chips.png">
+            <p class="bet{{getActionType(game.seats[getIndex(4)].user)}}" >$ {{getAmount(game.seats[getIndex(4)].user)}}</p>
+            <p>{{getActionType(game.seats[getIndex(4)].user)}}</p>
+          </div>
+        </td>
+        <td class="table-seat-four">
+          <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(4)].user)">
+            <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(4)].user)}}</span></p>
+          </div>
+
+          <div class="seats st4 {{userIsFolded(game.seats[getIndex(4)].user)}}">
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(4)].user"></div>
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(4)].user"></div>
+
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(4)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(4)].user)">
+              <p class="card-text ">{{game.seats[getIndex(4)].cardOne.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardOne.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(4)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(4)].user)">
+              <p class="card-text ">{{game.seats[getIndex(4)].cardTwo.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(4)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(4)].cardOne === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(4)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+          </div>
+          <div class="seat-name">
+            <p>{{game.seats[getIndex(4)].user}}</p>
+            <p>$ {{game.seats[getIndex(4)].chips}}</p>
+          </div>
+          <div class="buttons">
+            <span *ngIf="game.seats[getIndex(4)].button" class="chip seatBU">BU</span>
+            <span *ngIf="game.seats[getIndex(4)].small" class="chip small seatBU">SB</span>
+            <span *ngIf="game.seats[getIndex(4)].big" class="chip big seatBU">BB</span>
+          </div>
+        </td>
+      </tr>
+      <tr class="row4">
+        <td></td>
+        <td></td>
+        <td class="bet {{getActionType(game.seats[getIndex(8)].user)}}">
+          <div class="bet8-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ 1233</p>
+          </div>
+          <div class="bet8-div" *ngIf="actionAnte && game.ante!=null">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.ante}}</p>
+          </div>
+          <div class="bet8-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(8)].small">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.smallBlind}}</p>
+          </div>
+          <div class="bet8-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(8)].big">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.bigBlind}}</p>
+          </div>
+          <div class="bet8-div"
+               *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(8)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(8)].user))
+                || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(8)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(8)].user))">
+            <img class="bet{{getActionType(game.seats[getIndex(8)].user)}}"  src="/assets/images/pkr_chips.png">
+            <p class="bet{{getActionType(game.seats[getIndex(8)].user)}}" >$ {{getAmount(game.seats[getIndex(8)].user)}}</p>
+            <p>{{getActionType(game.seats[getIndex(8)].user)}}</p>
+          </div>
+        </td>
+        <td></td>
+        <td class="pot bet">
+          <div class="pot-div" *ngIf="actionPhase == 'SHOW_DOWN' && !reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.finalPot}}</p>
+          </div>
+          <div class="pot-div" *ngIf="reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{currentPot}}</p>
+          </div>
+        </td>
+        <td></td>
+        <td class="bet {{getActionType(game.seats[getIndex(5)].user)}}">
+          <div class="bet5-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ 1233</p>
+          </div>
+          <div class="bet5-div" *ngIf="actionAnte && game.ante!=null">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.ante}}</p>
+          </div>
+          <div class="bet5-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(5)].small">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.smallBlind}}</p>
+          </div>
+          <div class="bet5-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(5)].big">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.bigBlind}}</p>
+          </div>
+          <div class="bet5-div"
+               *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(5)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(5)].user))
+                || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(5)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(5)].user))">
+            <img class="bet{{getActionType(game.seats[getIndex(5)].user)}}"  src="/assets/images/pkr_chips.png">
+            <p class="bet{{getActionType(game.seats[getIndex(5)].user)}}" >$ {{getAmount(game.seats[getIndex(5)].user)}}</p>
+            <p>{{getActionType(game.seats[getIndex(5)].user)}}</p>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="row5">
+        <td class="table-seat-eight">
+          <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(8)].user)">
+            <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(8)].user)}}</span></p>
+          </div>
+
+          <div class="seats st8 {{userIsFolded(game.seats[getIndex(8)].user)}}">
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(8)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(8)].user)">
+              <p class="card-text ">{{game.seats[getIndex(8)].cardOne.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardOne.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(8)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(8)].user)">
+              <p class="card-text ">{{game.seats[getIndex(8)].cardTwo.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(8)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(8)].user"></div>
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(8)].user"></div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(8)].cardOne === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(8)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+          </div>
+          <div class="seat-name">
+            <p>{{game.seats[getIndex(8)].user}}</p>
+            <p>$ {{game.seats[getIndex(8)].chips}}</p>
+          </div>
+          <div class="buttons">
+            <span *ngIf="game.seats[getIndex(8)].button" class="chip seatBU">BU</span>
+            <span *ngIf="game.seats[getIndex(8)].small" class="chip small seatBU">SB</span>
+            <span *ngIf="game.seats[getIndex(8)].big" class="chip big seatBU">BB</span>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td class="bet {{getActionType(game.seats[getIndex(7)].user)}}">
+          <div class="bet7-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ 1233</p>
+          </div>
+          <div class="bet7-div" *ngIf="actionAnte && game.ante!=null">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.ante}}</p>
+          </div>
+          <div class="bet7-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(7)].small">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.smallBlind}}</p>
+          </div>
+          <div class="bet7-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(7)].big">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.bigBlind}}</p>
+          </div>
+          <div class="bet7-div"
+               *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(7)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(7)].user))
+                || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(7)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(7)].user))">
+            <img class="bet{{getActionType(game.seats[getIndex(7)].user)}}"  src="/assets/images/pkr_chips.png">
+            <p class="bet{{getActionType(game.seats[getIndex(7)].user)}}" >$ {{getAmount(game.seats[getIndex(7)].user)}}</p>
+            <p>{{getActionType(game.seats[getIndex(7)].user)}}</p>
+          </div>
+        </td>
+        <td></td>
+        <td class="bet {{getActionType(game.seats[getIndex(6)].user)}}">
+          <div class="bet6-div" *ngIf="actionPhase != 'SHOW_DOWN' && !reseted">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ 1233</p>
+          </div>
+          <div class="bet6-div" *ngIf="actionAnte && game.ante!=null">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.ante}}</p>
+          </div>
+          <div class="bet6-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 7 && actionPhase === 'PREFLOP' && game.seats[getIndex(6)].small">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.smallBlind}}</p>
+          </div>
+          <div class="bet6-div" *ngIf="actionNumberPreFlop >= -1 && actionNumberPreFlop < 8 && actionPhase === 'PREFLOP' && game.seats[getIndex(6)].big">
+            <img src="/assets/images/pkr_chips.png">
+            <p>$ {{game.bigBlind}}</p>
+          </div>
+          <div class="bet6-div"
+               *ngIf="(actionNumberPreFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(6)].user)) || (actionNumberFlop >= 0 && seatMatchWithActionNumber(game.seats[getIndex(6)].user))
+                || (actionNumberTurn >= 0 && seatMatchWithActionNumber(game.seats[getIndex(6)].user)) || (actionNumberRiver >= 0 && seatMatchWithActionNumber(game.seats[getIndex(6)].user))">
+            <img class="bet{{getActionType(game.seats[getIndex(6)].user)}}"  src="/assets/images/pkr_chips.png">
+            <p class="bet{{getActionType(game.seats[getIndex(6)].user)}}" >$ {{getAmount(game.seats[getIndex(6)].user)}}</p>
+            <p>{{getActionType(game.seats[getIndex(6)].user)}}</p>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td class="table-seat-five">
+          <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(5)].user)">
+            <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(5)].user)}}</span></p>
+          </div>
+
+          <div class="seats st5 {{userIsFolded(game.seats[getIndex(5)].user)}}">
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(5)].user"></div>
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(5)].user"></div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(5)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(5)].user)">
+              <p class="card-text ">{{game.seats[getIndex(5)].cardOne.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardOne.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(5)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(5)].user)">
+              <p class="card-text ">{{game.seats[getIndex(5)].cardTwo.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(5)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(5)].cardOne === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(5)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+          </div>
+          <div class="seat-name">
+            <p>{{game.seats[getIndex(5)].user}}</p>
+            <p>$ {{game.seats[getIndex(5)].chips}}</p>
+          </div>
+
+          <div class="buttons">
+            <span *ngIf="game.seats[getIndex(5)].button" class="chip seatBU">BU</span>
+            <span *ngIf="game.seats[getIndex(5)].small" class="chip small seatBU">SB</span>
+            <span *ngIf="game.seats[getIndex(5)].big" class="chip big seatBU">BB</span>
+          </div>
+        </td>
+      </tr>
+      <tr class="row6">
+        <td></td>
+        <td></td>
+        <td class="table-seat-seven">
+          <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(7)].user)">
+            <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(7)].user)}}</span></p>
+          </div>
+
+          <div class="seats st7 {{userIsFolded(game.seats[getIndex(7)].user)}}">
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(7)].user"></div>
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(7)].user"></div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(7)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(7)].user)">
+              <p class="card-text ">{{game.seats[getIndex(7)].cardOne.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardOne.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(7)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(7)].user)">
+              <p class="card-text ">{{game.seats[getIndex(7)].cardTwo.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(7)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(7)].cardOne === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(7)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
+
+
+            </div>
+          </div>
+          <div class="seat-name">
+            <p>{{game.seats[getIndex(7)].user}}</p>
+            <p>$ {{game.seats[getIndex(7)].chips}}</p>
+          </div>
+          <div class="buttons">
+            <span *ngIf="game.seats[getIndex(7)].button" class="chip seatBU">BU</span>
+            <span *ngIf="game.seats[getIndex(7)].small" class="chip small seatBU">SB</span>
+            <span *ngIf="game.seats[getIndex(7)].big" class="chip big seatBU">BB</span>
+          </div>
+        </td>
+        <td></td>
+        <td>
+          <p class="info">Big Blind: $ {{game.bigBlind}}</p>
+          <p class="info">Small Blind: $ {{game.smallBlind}}</p>
+          <p class="info">Ante: $ {{game.ante == null ? 0: game.ante}}</p>
+        </td>
+        <td></td>
+        <td class="table-seat-six">
+          <div class="win" *ngIf="actionPhase == 'SHOW_DOWN' && isColletor(game.seats[getIndex(6)].user)">
+            <p>WIN $ <span>{{getCollectedAmount(game.seats[getIndex(6)].user)}}</span></p>
+          </div>
+
+          <div class="seats st6 {{userIsFolded(game.seats[getIndex(6)].user)}}">
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(6)].user"></div>
+            <div class="card-small null"
+                 *ngIf="actionPhase != 'SHOW_DOWN' && game.myNick != game.seats[getIndex(6)].user"></div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(6)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(6)].user)">
+              <p class="card-text ">{{game.seats[getIndex(6)].cardOne.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardOne.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small"
+                 *ngIf="game.seats[getIndex(6)].cardOne !== null && (actionPhase == 'SHOW_DOWN' || game.myNick == game.seats[getIndex(6)].user)">
+              <p class="card-text ">{{game.seats[getIndex(6)].cardTwo.substring(0,1)}}</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 'c'">&clubs;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 'h'">&hearts;</p>
+              <p class="card-img red" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 'd'">&diams;</p>
+              <p class="card-img black" *ngIf="game.seats[getIndex(6)].cardTwo.substring(1,2)=== 's'">&spades;</p>
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(6)].cardOne === null && actionPhase == 'SHOW_DOWN'">
+
+            </div>
+            <div class="card-small null"
+                 *ngIf="game.seats[getIndex(6)].cardTwo === null && actionPhase == 'SHOW_DOWN'">
+
+            </div>
+          </div>
+          <div class="seat-name">
+            <p>{{game.seats[getIndex(6)].user}}</p>
+            <p>$ {{game.seats[getIndex(6)].chips}}</p>
+          </div>
+          <div class="buttons">
+            <span *ngIf="game.seats[getIndex(6)].button" class="chip seatBU">BU</span>
+            <span *ngIf="game.seats[getIndex(6)].small" class="chip small seatBU">SB</span>
+            <span *ngIf="game.seats[getIndex(6)].big" class="chip big seatBU">BB</span>
+          </div>
+        </td>
+        <td></td>
+        <td>
+          <span><i class="material-icons" (click)="reset()">replay</i></span>
+          <span><i class="material-icons" (click)="play()">fast_forward</i></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="table centered">
 
 
   </div>
+</div>
 
+
+  <!-- Single Comment
+</div> -->
+<div class="container">
+  <hr>
+  <!-- Post Content -->
+  <button type="submit" (click)="showContent()" class="btn">{{contentVisibility ? 'Hide text content':
+    'Show text content' }}
+  </button>
+  <ng-template [ngIf]="contentVisibility">
+    <p style="font-size: 10pt" *ngFor="let line of post.content; let i = index;">{{post.content[i]}}</p>
+  </ng-template>
+
+  <!-- Comments Form -->
+
+  <div class="card my-4">
+    <h5 class="card-header">Leave a Comment:</h5>
+    <div class="card-body">
+      <form [formGroup]="commentForm" (ngSubmit)="onCommentSubmit()">
+        <div class="form-group">
+          <textarea class="form-control" formControlName="comment" rows="3"></textarea>
+        </div>
+        <button type="submit" [disabled]="!commentForm.valid" class="btn">Submit</button>
+      </form>
+    </div>
+  </div>
   <div class="media mb-4" *ngFor="let comment of comments" style="padding-left: 0px">
     <img class="d-flex mr-3 rounded-circle"
          src="http://qualiscare.com/wp-content/uploads/2017/08/default-user.png"
@@ -830,8 +846,10 @@
       </div>
     </div>
   </div>
-  <!-- /.row -->
+
 
 </div>
+
+
 
 

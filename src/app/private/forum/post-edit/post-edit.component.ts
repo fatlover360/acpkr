@@ -89,7 +89,7 @@ export class PostEditComponent implements OnInit {
         this.onCancelEditMode();
       });
     }else {
-      this.postService.savePost(post).subscribe( date => {
+      this.postService.savePost(post).subscribe( (date: Post) => {
         this.snackBar.open('Post saved', '', {
           duration: 2000
         });

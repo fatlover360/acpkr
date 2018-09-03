@@ -8,12 +8,12 @@ div.seats, div.board {
 
 .chip {
   background-color: #2196F3;
-  width: 22px;
-  height: 22px;
-  border-radius: 20px;
+  width: 27px;
+  height: 27px;
+  border-radius: 30px;
   font-size: 9pt;
   text-align: center;
-  position: absolute;
+  padding: 3px;
 }
 
 /*
@@ -78,7 +78,7 @@ cards and table
 
   .table {
     background-color: green;
-    height: 40.5%;
+    height: 55%;
     width: 76.5%;
     border-radius: 50%;
     border: 1em solid black;
@@ -181,7 +181,7 @@ td {
 
 .centered {
   position: absolute;
-  top: 43.5%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -262,6 +262,15 @@ td {
 .bet9-div {
   float: right;
 }
+
+.FOLD {
+  visibility: hidden;
+}
+
+.betCHECK {
+  visibility: hidden;
+}
+
 
 
 

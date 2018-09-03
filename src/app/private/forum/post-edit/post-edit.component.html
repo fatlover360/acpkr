@@ -1,9 +1,9 @@
 <!-- Page Content -->
 <div class="container">
-
+<!--
   <div class="row">
 
-    <!-- Post Content Column -->
+
     <div class="col-lg-12">
       <mat-spinner *ngIf="loadingPost"></mat-spinner>
       <form [formGroup]="postForm" (ngSubmit)="onSubmit()" *ngIf="!loadingPost">
@@ -11,7 +11,7 @@
           <label for="title">Title/Tournament</label>
           <input type="text" class="form-control" id="title" aria-describedby="emailHelp"
                  placeholder="Enter title/tournament" formControlName="title">
-          <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+
         </div>
 
         <div class="form-group">
@@ -33,11 +33,13 @@
           class="btn"
           [disabled]="!postForm.valid">Save
         </button>
-        <button type="button" class="btn" (click)="onCancel()">Cancel</button>
+        <button type="button" class="btn" (click)="onCancel()" onclick="WEAKTIGHT(document.getElementById('description'))">Cancel</button>
       </form>
     </div>
 
   </div>
   <!-- /.row -->
+
+  <iframe src="http://localhost:80/test/test.php" width="1000" height="700" frameBorder="0"></iframe>
 
 </div>

@@ -33,7 +33,6 @@ export class PostComponent implements OnInit {
   actionAnte = false;
   currentPot = 0;
   seatsCurrentAmount: Seats[];
-
   constructor(private route: ActivatedRoute, private postService: PostService, private router: Router, public snackBar: MatSnackBar, private auth: AuthService) {
   }
 
@@ -81,10 +80,9 @@ export class PostComponent implements OnInit {
     this.postService.getId(id).subscribe(data => {
       this.post = data;
       this.postService.getGame(id).subscribe(game => {
-        console.log(game);
         this.game = game;
         this.seatsCurrentAmount = game.seats;
-        this.seatsCurrentAmount.forEach(seat => seat.chips = 0);
+        // this.seatsCurrentAmount.forEach(seat => seat.chips = 0);
         this.getCommentaries(id);
       });
     });
@@ -167,11 +165,13 @@ export class PostComponent implements OnInit {
 
   isColletor(username: string): boolean {
     let bool = false;
-    this.game.showDown.forEach(action => {
-      if (action.userName === username && action.actionType === 'COLLECT') {
-        bool = true;
-      }
-    });
+    if (this.game.showDown != null) {
+      this.game.showDown.forEach(action => {
+        if (action.userName === username && action.actionType === 'COLLECT') {
+          bool = true;
+        }
+      });
+    }
     return bool;
   }
 
@@ -205,6 +205,9 @@ export class PostComponent implements OnInit {
       if (this.actionNumberPreFlop === -3) {
         this.actionAnte = true;
         this.currentPot = this.game.seats.length * this.game.ante;
+        if (this.game.ante == null) {
+          this.actionNumberPreFlop++;
+        }
       } else {
         this.actionAnte = false;
       }
@@ -215,11 +218,27 @@ export class PostComponent implements OnInit {
   setActionPhase() {
     if (this.actionPhase === 'PREFLOP') {
       this.actionNumberPreFlop++;
+      if (this.actionNumberPreFlop > -1 && this.game.preFlopActions.length > this.actionNumberPreFlop) {
+        this.currentPot += this.game.preFlopActions[this.actionNumberPreFlop].amount;
+        this.game.seats.forEach((seat: Seats) => {
+          if (seat.user === this.game.preFlopActions[this.actionNumberPreFlop].userName) {
+            seat.chips = seat.chips - this.game.preFlopActions[this.actionNumberPreFlop].amount;
+          }
+        });
+      }
     }
 
     if (this.actionPhase === 'FLOP') {
       this.actionNumberFlop++;
       if (this.game.flopActions != null) {
+        if (this.actionNumberFlop > -1 && this.game.flopActions.length > this.actionNumberFlop) {
+          this.currentPot += this.game.flopActions[this.actionNumberFlop].amount;
+          this.game.seats.forEach((seat: Seats) => {
+            if (seat.user === this.game.flopActions[this.actionNumberFlop].userName) {
+              seat.chips = seat.chips - this.game.flopActions[this.actionNumberFlop].amount;
+            }
+          });
+        }
         if (this.actionNumberFlop >= this.game.flopActions.length) {
           this.actionPhase = 'TURN';
           this.actionNumberPreFlop = -10;
@@ -237,6 +256,14 @@ export class PostComponent implements OnInit {
     if (this.actionPhase === 'TURN') {
       this.actionNumberTurn++;
       if (this.game.turnActions != null) {
+        if (this.actionNumberTurn > -1  && this.game.turnActions.length > this.actionNumberTurn) {
+          this.currentPot += this.game.turnActions[this.actionNumberTurn].amount;
+          this.game.seats.forEach((seat: Seats) => {
+            if (seat.user === this.game.turnActions[this.actionNumberTurn].userName) {
+              seat.chips = seat.chips - this.game.turnActions[this.actionNumberTurn].amount;
+            }
+          });
+        }
         if (this.actionNumberTurn >= this.game.turnActions.length) {
           this.actionPhase = 'RIVER';
           this.actionNumberPreFlop = -10;
@@ -251,10 +278,17 @@ export class PostComponent implements OnInit {
         this.actionNumberRiver = -2;
       }
     }
-
     if (this.actionPhase === 'RIVER') {
       this.actionNumberRiver++;
       if (this.game.riverActions != null) {
+        if (this.actionNumberRiver > -1  && this.game.riverActions.length > this.actionNumberRiver) {
+          this.currentPot += this.game.riverActions[this.actionNumberRiver].amount;
+          this.game.seats.forEach((seat: Seats) => {
+            if (seat.user === this.game.riverActions[this.actionNumberRiver].userName) {
+              seat.chips = seat.chips - this.game.riverActions[this.actionNumberRiver].amount;
+            }
+          });
+        }
         if (this.actionNumberRiver === this.game.riverActions.length) {
           this.actionPhase = 'SHOW_DOWN';
           this.actionNumberPreFlop = -3;
@@ -272,9 +306,13 @@ export class PostComponent implements OnInit {
     }
 
     if (this.actionNumberPreFlop >= 0) {
+      let flopActionLength = 1;
+      if (this.game.flopActions != null) {
+        flopActionLength = this.game.flopActions.length;
+      }
       if (this.actionNumberPreFlop < this.game.preFlopActions.length) {
         this.actionPhase = 'PREFLOP';
-      } else if ((this.actionNumberPreFlop >= this.game.preFlopActions.length && this.actionNumberPreFlop < (this.game.flopActions.length + this.game.preFlopActions.length))) {
+      } else if ((this.actionNumberPreFlop >= this.game.preFlopActions.length && this.actionNumberPreFlop < (flopActionLength + this.game.preFlopActions.length))) {
         this.actionPhase = 'FLOP';
         this.actionNumberPreFlop = -10;
       }
@@ -415,10 +453,23 @@ export class PostComponent implements OnInit {
         match = '';
         break;
     }
+
+    if (match === 'FOLD') {
+      this.game.seats.forEach( seat => {
+        if (seat.user === username) {
+          seat.isFold = true;
+        }
+      });
+    }
     return match;
   }
 
-  /*userIsFolded(username: string) {
-
-  }*/
+  userIsFolded(username: string) {
+    const st: Seats = this.game.seats.find( (seat: Seats) => seat.user === username);
+    if (st.isFold) {
+      return 'FOLD';
+    }else {
+      return '';
+    }
+  }
 }

@@ -33,6 +33,7 @@ import { PostEditComponent } from './private/forum/post-edit/post-edit.component
 import { PostListComponent } from './private/forum/post-list/post-list.component';
 import {PostService} from "./private/forum/post.service";
 import { VideosComponent } from './private/videos/videos.component';
+import {CookieService} from 'ngx-cookie-service';
 
 
 
@@ -77,7 +78,7 @@ import { VideosComponent } from './private/videos/videos.component';
     AngularFireAuthModule
   ],
   entryComponents: [DialogComponent],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AuthService, CashService, AngularFireAuth, AngularFireDatabase, HttpClient, FirebaseDbService, RangesService, PostService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AuthService, CashService, AngularFireAuth, AngularFireDatabase, HttpClient, FirebaseDbService, RangesService, PostService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,8 +10,24 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
   <app-root></app-root>
 </body>
+
+<script type="text/javascript">
+  function WEAKTIGHT(data) {
+    $.ajax({
+      type: "POST",
+      url: 'api_curl_weaktight.php',
+      data: {function2call: 'run', dt: data},
+      success: function (obj) {
+        console.log(obj);
+      }
+    });
+  }
+
+</script>
 </html>

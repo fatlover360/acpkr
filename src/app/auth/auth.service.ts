@@ -7,6 +7,7 @@ import {DialogComponent} from '../utils/dialog/dialog.component';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {environment} from '../../environments/environment.prod';
 import {AngularFireDatabase} from 'angularfire2/database';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @Injectable()
@@ -15,7 +16,7 @@ export class AuthService {
   authState: any = null;
 
   constructor(private router: Router, public afAuth: AngularFireAuth, private http: HttpClient,
-              public dialog: MatDialog, public af: AngularFireDatabase, public snackbar: MatSnackBar) {
+              public dialog: MatDialog, public af: AngularFireDatabase, public snackbar: MatSnackBar, public cookiesService: CookieService) {
     this.afAuth.authState.subscribe((auth) => {
       this.authState = auth;
     });
@@ -28,6 +29,7 @@ export class AuthService {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user;
+        this.cookiesService.set('uid', this.authState.uid);
         this.router.navigate(['/home']);
         this.dialog.closeAll();
       })
@@ -64,6 +66,7 @@ export class AuthService {
     this.afAuth.auth.signOut();
     this.openDialog();
     setTimeout(() => {
+      this.cookiesService.deleteAll();
       this.dialog.closeAll();
       this.router.navigate(['/login']);
     }, 1000);
