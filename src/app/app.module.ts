@@ -18,23 +18,17 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { DialogComponent } from './utils/dialog/dialog.component';
 import { ProfileComponent } from './private/profile/profile.component';
-import { CashComponent } from './private/cash/cash.component';
-import { OverviewComponent } from './private/overview/overview.component';
+
 import { AdminComponent } from './private/admin/admin.component';
 import {ChartsModule} from 'ng2-charts';
 import {FirebaseDbService} from './storage/firebase-db.service';
-import {CashService} from './private/cash/cash.service';
+
 import {HttpModule} from "@angular/http";
 import {RangesService} from "./private/ranges/ranges.service";
-import { ForumComponent } from './private/forum/forum.component';
-import { PostComponent } from './private/forum/post/post.component';
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
-import { PostEditComponent } from './private/forum/post-edit/post-edit.component';
-import { PostListComponent } from './private/forum/post-list/post-list.component';
-import {PostService} from "./private/forum/post.service";
-import { VideosComponent } from './private/videos/videos.component';
-import {CookieService} from 'ngx-cookie-service';
 
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+
+import {CookieService} from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -47,14 +41,7 @@ import {CookieService} from 'ngx-cookie-service';
     HomeComponent,
     DialogComponent,
     ProfileComponent,
-    CashComponent,
-    OverviewComponent,
-    AdminComponent,
-    ForumComponent,
-    PostComponent,
-    PostEditComponent,
-    PostListComponent,
-    VideosComponent
+    AdminComponent
   ],
   imports: [
     HttpModule,
@@ -78,7 +65,7 @@ import {CookieService} from 'ngx-cookie-service';
     AngularFireAuthModule
   ],
   entryComponents: [DialogComponent],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AuthService, CashService, AngularFireAuth, AngularFireDatabase, HttpClient, FirebaseDbService, RangesService, PostService, CookieService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AuthService, AngularFireAuth, AngularFireDatabase, HttpClient, FirebaseDbService, RangesService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

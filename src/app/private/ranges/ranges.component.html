@@ -1,5 +1,9 @@
 <div class="container">
   <div class="row" style="margin-bottom: 20px" *ngIf="isAdmin">
+    <button type="button" class="btn btn-outline-secondary mr-2" placement="top"
+            ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on top">
+      Popover on top
+    </button>
     <button class="btn btn-dark" (click)="save()">Save</button>
     <button class="btn btn-dark" style="margin-left: 2px" (click)="clearArray()">Clear</button>
     <button class="btn btn-dark" *ngIf="typeSelected !== null" style="margin-left: 2px" (click)="delete()">Delete
